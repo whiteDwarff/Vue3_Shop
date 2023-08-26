@@ -1,38 +1,19 @@
 <script setup>
-import LoginForm from '@/components/member/LoginForm.vue';
-import { validationPassword } from '@/utils/validation.js';
-import { ref } from 'vue';
-
-const memberInfo = ref({
-	id: null,
-	password: null,
-	isSaveLoginInfo: false,
-});
-
-const login = () => {
-	if (!memberInfo.value.id) alert('아이디 항목은 필수 입력값입니다.');
-	else if (!memberInfo.value.password)
-		alert('비밀번호 항목은 필수 입력값입니다.');
-	else if (!validationPassword(memberInfo.value.password))
-		alert('비밀번호는 대소문자, 숫자 및 특수문자를 포함해야함');
-};
+// ------------------------------------------------------------
+import AppHeader from '@/views/AppHeader.vue';
 </script>
 
 <template>
 	<div>
-		<LoginForm
-			@submit.prevent="login"
-			v-model:id.trim="memberInfo.id"
-			v-model:password.trim="memberInfo.password"
-			v-model:saveInfo="memberInfo.isSaveLoginInfo"
-		/>
-		{{ memberInfo.id }}<br />
-		{{ memberInfo.password }}<br />
-		{{ memberInfo.isSaveLoginInfo }}
+		<AppHeader />
+		<router-view></router-view>
 	</div>
 </template>
 
 <style>
+section {
+	width: 80%;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -40,11 +21,31 @@ const login = () => {
 	list-style: none;
 	font-weight: normal;
 }
+html {
+	font-size: 10px;
+}
+a {
+	text-decoration: none;
+}
+.form-wrap {
+	width: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.form-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 8rem;
+}
 .border-bottom {
 	border-bottom: 1px solid #000;
+	margin-bottom: 3rem;
 }
 .outline-none {
 	border: none;
+	outline: none;
 }
 .flex-box {
 	display: flex;
@@ -54,6 +55,7 @@ const login = () => {
 }
 .submit-button {
 	background-color: #fff;
+	font-size: 1.3rem;
 }
 #find-member-info {
 	text-align: center;
@@ -67,7 +69,7 @@ const login = () => {
 	font-weight: bold;
 }
 .hover-green:hover {
-	color: #b4fcbe;
+	color: #f00;
 	cursor: pointer;
 }
 </style>
