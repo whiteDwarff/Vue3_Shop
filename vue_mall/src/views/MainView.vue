@@ -13,8 +13,14 @@ export default {};
 #main-view {
 	background-color: #040000;
 	text-align: center;
+	width: 100vw;
+	height: 100vh;
 }
 #logo {
-	width: 70%;
+	width: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 </style>
