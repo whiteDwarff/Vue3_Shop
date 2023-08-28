@@ -50,6 +50,9 @@ a {
 .flex-box {
 	display: flex;
 }
+.center {
+	justify-content: center;
+}
 .around {
 	justify-content: space-around;
 }

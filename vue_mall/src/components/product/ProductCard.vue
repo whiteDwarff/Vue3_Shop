@@ -34,9 +34,10 @@ defineProps({
 .main-image {
 	text-align: center;
 	width: 80%;
+	transition: 0.5s ease-in-out;
 }
 .main-image:hover {
-	transform: scale(1.1);
+	transform: scale(1.05);
 	transition: 0.5s ease-in-out;
 }
 .card-title {
