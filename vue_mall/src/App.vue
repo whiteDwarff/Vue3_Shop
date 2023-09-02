@@ -56,6 +56,12 @@ a {
 .around {
 	justify-content: space-around;
 }
+.space-between {
+	justify-content: space-between;
+}
+.align-center {
+	align-items: baseline;
+}
 .submit-button {
 	background-color: #fff;
 	font-size: 1.3rem;

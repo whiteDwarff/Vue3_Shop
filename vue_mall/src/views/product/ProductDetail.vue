@@ -5,7 +5,7 @@
 				<ToggleImage :image="product.detailImage" />
 			</article>
 			<article class="article">
-				<h4 id="detail-title">{{ product.name }}</h4>
+				<h6 id="detail-title">{{ product.name }}</h6>
 				<span id="detail-price"
 					>{{ product.price ? product.price.toLocaleString() + ' 원' : '무료' }}
 				</span>
@@ -21,29 +21,60 @@
 				<!-- 배송비 -->
 				<div class="flex-box">
 					<span class="margin-right">OPTION</span>
-					<select>
-						<option v-for="{ size } in product.stock" :key="size">
-							{{ size }}
-						</option>
+					<select @change="handleChange">
+						<!-- v-for와 if문의 중첩은 배제하는게 좋다. -->
+						<template v-for="{ size } in product.stock" :key="size">
+							<option v-if="typeof size === 'number'">{{ size }} SIZE</option>
+							<option v-if="typeof size === 'string'">
+								{{ size }}
+							</option>
+						</template>
 					</select>
 				</div>
-				<div>
-					<div v-for="option in product.stock" :key="option">
+				<!-- 옵션 box -->
+				<div class="select-count-box">
+					<div v-for="(option, index) in product.stock" :key="index">
+						<!-- [옵션] 선택란 제외 후 렌더링 -->
 						<div
 							v-if="
 								typeof option.size === 'number' || option.size.includes('FREE')
 							"
+							class="thum"
 						>
-							<span>{{ product.name }} ({{ option.size }})</span>
-							<div class="flex-box size-button-wrap">
-								<button><i class="fa-solid fa-minus"></i></button>
-								<span>{{ option.selected }}</span>
-								<button><i class="fa-solid fa-plus"></i></button>
+							<h6 class="option-title">
+								{{ product.name }} ({{ option.size }})
+							</h6>
+							<div class="flex-box align-center space-between">
+								<div class="size-button-wrap flex-box">
+									<!-- 수량빼기 버튼 -->
+									<button @click="subtractCount(index)">
+										<i class="fa-solid fa-minus"></i>
+									</button>
+									<span>{{ option.select }}</span>
+									<!-- 수량 더하기 버튼 -->
+									<button @click="addCount(index)" id="add-button">
+										<i class="fa-solid fa-plus"></i>
+									</button>
+								</div>
+								<small>
+									{{ (product.price * option.select).toLocaleString() }} 원
+								</small>
 							</div>
 						</div>
-						<div v-if="typeof option.size === 'string'"></div>
 					</div>
 				</div>
+				<!-- 사이즈별 옵션 선택란  -->
+				<article id="total-price">
+					<div class="flex-box space-between align">
+						<h4 class="option-title">주문 수량</h4>
+						<span> {{ result }} 개 </span>
+					</div>
+					<div class="flex-box space-between align">
+						<h4 class="option-title">총 상품 금액</h4>
+						<span> {{ (result * product.price).toLocaleString() }} 원 </span>
+					</div>
+				</article>
+				<!-- 총 금액 -->
 				<div class="flex-box button-wrap">
 					<button>CART</button>
 					<button>BUY</button>
@@ -69,12 +100,24 @@ import { getPostById } from '@/api/index.js';
 import ToggleImage from '@/components/product/ToggleImage.vue';
 
 const product = ref({});
+const result = ref(0);
 const route = useRoute();
 
 const fetchedItem = async () => {
 	const data = await getPostById(parseInt(route.params.id));
 	product.value = data;
 };
+const addCount = index => {
+	product.value.stock[index].count <= product.value.stock[index].select
+		? alert('상품의 수량이 재고수량 보다 많습니다.')
+		: ((product.value.stock[index].select += 1), (result.value += 1));
+};
+const subtractCount = index => {
+	product.value.stock[index].select <= 0
+		? alert('최소 주문수량은 1개 입니다.')
+		: ((product.value.stock[index].select -= 1), (result.value -= 1));
+};
+
 fetchedItem();
 </script>
 
@@ -91,13 +134,11 @@ fetchedItem();
 	width: 60%;
 }
 #product-info article:last-child {
-	width: 40%;
-	/* background-color: #ff0; */
+	width: 20%;
 	padding: 7rem 0;
 }
 #detail-title {
 	font-size: 1.5rem;
-	font-weight: bold;
 }
 #detail-price {
 	display: block;
@@ -117,15 +158,28 @@ fetchedItem();
 	font-size: 1.3rem;
 }
 .margin-right {
-	width: 5rem;
+	width: 7rem;
 }
 select {
-	width: 52%;
+	width: 80%;
 	height: 3rem;
 	outline: none;
 }
-.flex-box {
-	margin-bottom: 2rem;
+.select-count-box {
+	border-bottom: 1px solid #ccc;
+	margin: 5rem 0;
+}
+.thum {
+	border-top: 1px solid #ccc;
+	padding: 3rem 0;
+}
+.option-title {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+#total-price {
+	padding-bottom: 3rem;
 }
 .button-wrap button {
 	width: 15rem;

@@ -9,6 +9,7 @@
 				<input
 					:value="id"
 					@input="$emit('update:id', $event.target.value)"
+					v-focus
 					id="id-field"
 					class="outline-none"
 					type="text"

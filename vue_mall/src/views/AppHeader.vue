@@ -54,7 +54,7 @@ header {
 	position: fixed;
 	top: 3rem;
 	left: 0;
-	z-index: 999;
+	z-index: 0;
 	color: #fff;
 	width: 100%;
 }
@@ -62,6 +62,7 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	padding: 0 3rem;
+	background: none;
 }
 header a,
 aside a {
