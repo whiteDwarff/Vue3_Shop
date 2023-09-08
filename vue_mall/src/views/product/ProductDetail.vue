@@ -21,12 +21,14 @@
 				<!-- 배송비 -->
 				<div class="flex-box">
 					<span class="margin-right">OPTION</span>
-					<select @change="handleChange">
+					<select v-model="size" @change="selectSize">
 						<!-- v-for와 if문의 중첩은 배제하는게 좋다. -->
 						<template v-for="{ size } in product.stock" :key="size">
-							<option v-if="typeof size === 'number'">{{ size }} SIZE</option>
-							<option v-if="typeof size === 'string'">
+							<option v-if="typeof size === 'string'" selected>
 								{{ size }}
+							</option>
+							<option v-else-if="typeof size === 'number'">
+								{{ size }} SIZE
 							</option>
 						</template>
 					</select>
@@ -34,12 +36,14 @@
 				<!-- 옵션 box -->
 				<div class="select-count-box">
 					<div v-for="(option, index) in product.stock" :key="index">
-						<!-- [옵션] 선택란 제외 후 렌더링 -->
 						<div
-							v-if="
-								typeof option.size === 'number' || option.size.includes('FREE')
-							"
+							v-if="typeof option.size === 'number' || option.size == 'FREE'"
 							class="thum"
+							:class="{
+								none:
+									!selectedSizes.includes(option.size + ' SIZE') &&
+									!selectedSizes.includes('FREE'),
+							}"
 						>
 							<h6 class="option-title">
 								{{ product.name }} ({{ option.size }})
@@ -102,26 +106,47 @@ import ToggleImage from '@/components/product/ToggleImage.vue';
 const product = ref({});
 const result = ref(0);
 const route = useRoute();
+const size = ref('[필수] 옵션을 선택해주세요.');
+const option = ref({ size: 'none' });
+const selectedSizes = ref([]);
 
+// 데이터 호출
 const fetchedItem = async () => {
 	const data = await getPostById(parseInt(route.params.id));
 	product.value = data;
 };
+// ------------------------------------------------------------------
+// 제품 수량 증가
 const addCount = index => {
 	product.value.stock[index].count <= product.value.stock[index].select
 		? alert('상품의 수량이 재고수량 보다 많습니다.')
 		: ((product.value.stock[index].select += 1), (result.value += 1));
 };
+// 제품 수량 빼기
 const subtractCount = index => {
 	product.value.stock[index].select <= 0
 		? alert('최소 주문수량은 1개 입니다.')
 		: ((product.value.stock[index].select -= 1), (result.value -= 1));
+};
+// ------------------------------------------------------------------
+// 제품 사이즈 선택
+const selectSize = newSize => {
+	option.value.size = newSize.target.value;
+	if (!selectedSizes.value.includes(newSize.target.value))
+		selectedSizes.value.push(newSize.target.value);
 };
 
 fetchedItem();
 </script>
 
 <style scoped>
+.block {
+	display: block;
+	transition: 0.5s ease-in;
+}
+.none {
+	display: none;
+}
 #product-section {
 	width: 70%;
 	margin: 16rem auto 0 auto;
