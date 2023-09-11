@@ -38,6 +38,11 @@ const routes = [
 		name: 'productDetail',
 		component: () => import('@/views/product/ProductDetail.vue'),
 	},
+	{
+		path: '/payment',
+		name: 'payment',
+		component: () => import('@/views/PaymentView.vue'),
+	},
 ];
 
 const router = createRouter({

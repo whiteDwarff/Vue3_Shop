@@ -45,9 +45,12 @@
 									!selectedSizes.includes('FREE'),
 							}"
 						>
-							<h6 class="option-title">
-								{{ product.name }} ({{ option.size }})
-							</h6>
+							<div class="flex-box align-center space-between">
+								<h6 class="option-title">
+									{{ product.name }} ({{ option.size }})
+								</h6>
+								<i class="fa-solid fa-xmark delete-button"></i>
+							</div>
 							<div class="flex-box align-center space-between">
 								<div class="size-button-wrap flex-box">
 									<!-- 수량빼기 버튼 -->
@@ -81,7 +84,7 @@
 				<!-- 총 금액 -->
 				<div class="flex-box button-wrap">
 					<button>CART</button>
-					<button>BUY</button>
+					<button @click="payment">BUY</button>
 				</div>
 			</article>
 		</section>
@@ -99,7 +102,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { getPostById } from '@/api/index.js';
 import ToggleImage from '@/components/product/ToggleImage.vue';
 
@@ -134,6 +137,14 @@ const selectSize = newSize => {
 	option.value.size = newSize.target.value;
 	if (!selectedSizes.value.includes(newSize.target.value))
 		selectedSizes.value.push(newSize.target.value);
+};
+// ------------------------------------------------------------------
+// 제품구매
+const router = useRouter();
+const payment = () => {
+	router.push({
+		name: 'payment',
+	});
 };
 
 fetchedItem();
@@ -205,6 +216,10 @@ select {
 }
 #total-price {
 	padding-bottom: 3rem;
+}
+.delete-button {
+	padding: 0.2rem;
+	cursor: pointer;
 }
 .button-wrap button {
 	width: 15rem;

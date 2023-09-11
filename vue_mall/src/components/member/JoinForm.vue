@@ -167,21 +167,13 @@ const disabled = computed(() => {
 </script>
 
 <style scoped>
-label {
-	font-size: 1.2rem;
-	display: inline-block;
-	width: 15%;
-}
 .fa-sharp {
 	display: inline-block;
 	width: 2px;
 	color: rgb(141, 4, 4);
 	margin-right: 1rem;
 }
-.border-bottom input {
-	font-size: 14px;
-	width: 40%;
-}
+
 #tel-box {
 	display: flex;
 	align-items: center;

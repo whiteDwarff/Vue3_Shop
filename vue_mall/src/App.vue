@@ -43,6 +43,15 @@ a {
 	border-bottom: 1px solid #000;
 	margin-bottom: 3rem;
 }
+label {
+	font-size: 1.2rem;
+	display: inline-block;
+	width: 15%;
+}
+.border-bottom input {
+	font-size: 14px;
+	width: 40%;
+}
 .outline-none {
 	border: none;
 	outline: none;
