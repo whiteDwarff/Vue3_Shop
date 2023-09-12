@@ -1,20 +1,21 @@
 <template>
 	<section class="form-wrap">
 		<h4 class="form-title">CREATE ACCOUNT</h4>
-		<form>
+		<form @submit.prevent="createAccount">
 			<div class="border-bottom">
 				<label for="id-field"
 					><i class="fa-sharp fa-regular fa-asterisk fa-2xs" />ID
 				</label>
 				<input
-					:value="id"
-					@input="$emit('update:id', $event.target.value)"
+					v-model="nonMemberInfo.id"
 					v-focus
 					id="id-field"
 					class="outline-none"
 					type="text"
 				/>
-				<small class="font-grey">{{ idInputMsg }}</small>
+				<small v-if="idInputMsg !== true" class="font-grey">{{
+					idInputMsg
+				}}</small>
 			</div>
 			<div class="border-bottom">
 				<label for="password-field">
@@ -22,26 +23,28 @@
 					PW
 				</label>
 				<input
-					:value="pwd"
-					@input="$emit('update:pwd', $event.target.value)"
+					v-model="nonMemberInfo.password"
 					id="password-field"
 					class="outline-none"
 					type="password"
 				/>
-				<small class="font-grey">{{ pwdInputMsg }}</small>
+				<small v-if="pwdInputMsg !== true" class="font-grey">{{
+					pwdInputMsg
+				}}</small>
 			</div>
 			<div class="border-bottom">
 				<label for="password-field">
 					<i class="fa-sharp fa-regular fa-asterisk fa-2xs" />PW CHECK</label
 				>
 				<input
-					:value="pwdCheck"
-					@input="$emit('update:pwdCheck', $event.target.value)"
+					v-model="checkedPassword"
 					id="password-check"
 					class="outline-none"
 					type="password"
 				/>
-				<small class="font-grey">{{ pwdCheckMsg }}</small>
+				<small v-if="pwdCheckMsg !== true" class="font-grey">{{
+					pwdCheckMsg
+				}}</small>
 			</div>
 			<div class="border-bottom">
 				<label for="name-field">
@@ -49,20 +52,16 @@
 					NAME
 				</label>
 				<input
-					:value="name"
-					@input="$emit('update:name', $event.target.value)"
+					v-model="nonMemberInfo.name"
 					id="name-field"
 					class="outline-none"
 					type="text"
 				/>
 			</div>
+			<!-- tel-box -->
 			<div class="border-bottom" id="tel-box">
 				<label for="id-field">MOBILE</label>
-				<select
-					:value="firstNumber"
-					@change="$emit('update:firstNumber', $event.target.value)"
-					class="input-width"
-				>
+				<select v-model="nonMemberInfo.tel.firstTel" class="input-width">
 					<option value="010">010</option>
 					<option value="011">011</option>
 					<option value="016">016</option>
@@ -72,37 +71,50 @@
 				</select>
 				<span class="hyphen">-</span>
 				<input
-					:value="middleNumber"
-					@input="$emit('update:middleNumber', $event.target.value)"
+					v-model="nonMemberInfo.tel.middleTel"
 					class="outline-none"
 					type="text"
 					id="middle-number"
+					minlength="3"
+					maxlength="4"
 				/>
 				<span class="hyphen">-</span>
 				<input
-					:value="lastNumber"
-					@input="$emit('update:lastNumber', $event.target.value)"
+					v-model="nonMemberInfo.tel.lastTel"
 					class="outline-none"
 					type="text"
 					id="last-number"
+					minlength="3"
+					maxlength="4"
 				/>
 			</div>
+			<!-- post box -->
+			<PostFrom
+				v-model:postCode="nonMemberInfo.post.postCode"
+				v-model:adress="nonMemberInfo.post.adress"
+				v-model:detailAdress="nonMemberInfo.post.detailAdress"
+				v-model:extraAdress="nonMemberInfo.post.extraAdress"
+				@onPosted="execPostcode(nonMemberInfo.post)"
+			/>
+			<!-- email -->
 			<div class="border-bottom">
 				<label for="email-field">
 					<i class="fa-sharp fa-regular fa-asterisk fa-2xs"></i>
 					E MAIL
 				</label>
 				<input
-					:value="email"
-					@input="$emit('update:email', $event.target.value)"
+					v-model="nonMemberInfo.email"
 					id="email-field"
 					class="outline-none"
 					type="text"
 				/>
-				<small class="font-grey">{{ emailInputMsg }}</small>
+				<small v-if="emailInputMsg !== true" class="font-grey">{{
+					emailInputMsg
+				}}</small>
 			</div>
+
 			<button
-				:disabled="disabled"
+				:disabled="!disabled"
 				class="hover-green submit-button outline-none"
 			>
 				JOIN US
@@ -112,58 +124,77 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import PostFrom from '@/components/payment/PostForm.vue';
+import execPostcode from '@/utils/post.js';
 import {
 	validateId,
 	validatePassword,
 	validateEmail,
 } from '@/utils/validation.js';
+import { useRouter } from 'vue-router';
+import { useUserInfoStore } from '@/store/user';
+import { storeToRefs } from 'pinia';
 
-const props = defineProps({
-	id: String,
-	pwd: String,
-	pwdCheck: String,
-	name: String,
-	firstNumber: String,
-	middleNumber: String,
-	lastNumber: String,
-	email: String,
+const nonMemberInfo = ref({
+	id: '',
+	password: '',
+	name: '',
+	tel: {
+		firstTel: '010',
+		middleTel: null,
+		lastTel: null,
+	},
+	post: { postCode: '', adress: '', detailAdress: '', extraAdress: '' },
+	email: '',
 });
-defineEmits([
-	'update:id',
-	'update:pwd',
-	'update:pwdCheck',
-	'update:name',
-	'update:firstNumber',
-	'update:middleNumber',
-	'update:lastNumber',
-	'update:email',
-]);
+const checkedPassword = ref(null);
+
+// -----------------------------------------------------------
 const idInputMsg = computed(() => {
-	return validateId(props.id)
-		? ''
+	return validateId(nonMemberInfo.value.id)
+		? true
 		: '아이디는 소문자와 숫자를 포함한 6-12글자로 입력해주세요.';
 });
 const pwdInputMsg = computed(() =>
-	validatePassword(props.pwd)
-		? ''
+	validatePassword(nonMemberInfo.value.password)
+		? true
 		: '비밀번호는 대소문자와 특수기호, 숫자를 포함한 7-14글자로 작성해주세요.',
 );
 const pwdCheckMsg = computed(() => {
-	return props.pwd !== props.pwdCheck ? '비밀번호가 일치하지 않습니다.' : '';
+	return nonMemberInfo.value.password !== checkedPassword.value
+		? '비밀번호가 일치하지 않습니다.'
+		: true;
 });
 const emailInputMsg = computed(() => {
-	return validateEmail(props.email) ? '' : '올바른 이메일 형식이 아닙니다.';
+	return validateEmail(nonMemberInfo.value.email)
+		? true
+		: '올바른 이메일 형식이 아닙니다.';
 });
+// -----------------------------------------------------------
 const disabled = computed(() => {
 	return (
-		!validateId(props.id) ||
-		!validatePassword(props.pwd) ||
-		props.pwdCheck !== props.pwd ||
-		!validateEmail(props.email) ||
-		!props.name
+		validateId(nonMemberInfo.value.id) &&
+		validatePassword(nonMemberInfo.value.password) &&
+		nonMemberInfo.value.password === checkedPassword.value &&
+		validateEmail(nonMemberInfo.value.email) &&
+		!nonMemberInfo.value.name == ''
 	);
 });
+// -----------------------------------------------------------
+const router = useRouter();
+const createAccount = () => {
+	// ------------------ store 정의
+	const store = useUserInfoStore();
+	// ------------------ store 객체 가져오기
+	const { accountInfo } = storeToRefs(store);
+	// ------------------ store 객체에 값 할당
+	accountInfo.value = nonMemberInfo;
+	// ------------------
+	console.log(accountInfo);
+	alert('회원가입이 완료되었습니다. 로그인 후 이용해주새요.');
+	router.push({ name: 'login' });
+};
 </script>
 
 <style scoped>
@@ -173,7 +204,6 @@ const disabled = computed(() => {
 	color: rgb(141, 4, 4);
 	margin-right: 1rem;
 }
-
 #tel-box {
 	display: flex;
 	align-items: center;

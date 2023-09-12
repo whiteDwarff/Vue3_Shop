@@ -7,18 +7,7 @@
 			v-model:password.trim="memberInfo.password"
 			v-model:saveInfo="memberInfo.isSaveLoginInfo"
 		/>
-		<JoinForm
-			v-if="$route.fullPath.includes('join')"
-			@submit.prevent="join"
-			v-model:id.trim="nonMemberInfo.id"
-			v-model:pwd.trim="nonMemberInfo.password"
-			v-model:pwdCheck.trim="nonMemberInfo.passwordCheck"
-			v-model:name.trim="nonMemberInfo.name"
-			v-model:firstNumber="nonMemberInfo.firstNumber"
-			v-model:middleNumber="nonMemberInfo.middleNumber"
-			v-model:lastNumber="nonMemberInfo.lastNumber"
-			v-model:email.trim="nonMemberInfo.email"
-		/>
+		<JoinForm v-else-if="$route.fullPath.includes('join')" />
 	</div>
 </template>
 
@@ -37,20 +26,7 @@ const memberInfo = ref({
 // login submit event
 const login = () => alert('Success Login!!');
 
-// ------------------------------------------------------------
-// nonMemberInfo
-const nonMemberInfo = ref({
-	id: null,
-	password: null,
-	passwordCheck: null,
-	name: null,
-	firstNumber: '010',
-	middleNumber: null,
-	lastNumber: null,
-	email: null,
-});
 // join submit event
-const join = () => alert('Success Join!!');
 // ------------------------------------------------------------
 </script>
 

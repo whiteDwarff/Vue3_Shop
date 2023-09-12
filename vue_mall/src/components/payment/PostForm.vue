@@ -1,6 +1,6 @@
 <template>
-	<div class="border-bottom">
-		<h3>POST</h3>
+	<div class="border-bottom" id="post-form">
+		<label>POST</label>
 		<input
 			v-focus
 			@input="$emit('update:postCode', $event.target.value)"
@@ -15,8 +15,10 @@
 			type="button"
 			@click="$emit('onPosted')"
 			value="우편번호 찾기"
+			id="posted-button"
 		/><br />
 		<input
+			@input="$emit('update:adress', $event.target.value)"
 			:value="adress"
 			type="text"
 			id="adress"
@@ -26,30 +28,27 @@
 		/><br />
 		<input
 			@input="$emit('update:detailAdress', $event.target.value)"
+			:value="detailAdress"
 			type="text"
 			id="detailAdress"
 			class="outline-none"
 			placeholder="Detail Adress"
 		/>
-		<input :value="extraAdress" type="text" id="extraAdress" disabled />
-		<div>
-			<select v-model="postReq">
-				<option>배송전에 미리 연락바랍니다.</option>
-				<option>부재 시 경비실에 맡겨주세요.</option>
-				<option>부재 시 문 앞에 놓아주세요.</option>
-				<option>뻐른 배송 부탁드립니다.</option>
-				<option>택배함에 보관해주세요.</option>
-				<option>직접 입력</option>
-			</select>
-			<input v-if="postReq === '직접 입력'" id="post-req" />
-		</div>
+		<input
+			@input="$emit('update:extraAdress', $event.target.value)"
+			:value="extraAdress"
+			type="text"
+			id="extraAdress"
+			disabled
+		/>
 	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+// import { ref } from 'vue';
 
 defineProps({
+	// post: Object,
 	postCode: String,
 	adress: String,
 	detailAdress: String,
@@ -62,7 +61,31 @@ defineEmits([
 	'update:extraAdress',
 	'onPosted',
 ]);
-const postReq = ref('배송전에 미리 연락바랍니다.');
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+#post-form * {
+	margin-bottom: 1rem;
+}
+label:first-child {
+	display: block;
+}
+input {
+	background-color: #fff;
+}
+input::placeholder {
+	font-size: 0.8rem;
+}
+#posted-button {
+	border: none;
+	background-color: #000;
+	color: #fff;
+	cursor: pointer;
+	width: 30%;
+	border-radius: 0.5rem;
+}
+#extraAdress {
+	width: 30%;
+	border: none;
+}
+</style>
