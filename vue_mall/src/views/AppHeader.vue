@@ -4,9 +4,13 @@
 			<h1>
 				<router-link to="/" :class="fontColor">FORCE SENSITIVE</router-link>
 			</h1>
-			<ul>
+			<ul v-if="!loginUser.id">
 				<router-link to="/member/login" :class="fontColor">LOGIN</router-link>
 				<router-link to="/member/join" :class="fontColor">JOIN</router-link>
+			</ul>
+			<ul v-else>
+				<a :class="fontColor">MYPAGE</a>
+				<a :class="fontColor">LOGOUT</a>
 			</ul>
 		</nav>
 	</header>
@@ -34,8 +38,13 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useUserInfoStore } from '@/store/user';
+import { storeToRefs } from 'pinia';
 const route = useRoute();
 const fontColor = ref('colorWhite');
+
+const store = useUserInfoStore();
+const { loginUser } = storeToRefs(store);
 
 watch(
 	() => route.fullPath,

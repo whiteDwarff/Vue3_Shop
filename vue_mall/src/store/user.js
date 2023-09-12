@@ -2,19 +2,29 @@ import { defineStore } from 'pinia';
 
 export const useUserInfoStore = defineStore('user', {
 	state: () => ({
-		loginInfo: {
+		loginUser: {
 			id: null,
-			pwd: null,
+			password: null,
+			session: null,
 		},
-		accountInfo: {
-			id: null,
-			pwd: null,
-			name: null,
-			tel: {},
-			post: {},
-			email: null,
-		},
+		accountInfo: JSON.parse(localStorage.getItem('user')) || {},
 	}),
 	getters: {},
-	actions: {},
+	actions: {
+		savedUserInfo() {
+			localStorage.setItem('user', JSON.stringify(this.accountInfo));
+		},
+		checkedLoginInfo({ id, password }) {
+			if (
+				id === this.accountInfo.id &&
+				password === this.accountInfo.password
+			) {
+				return true;
+			} else if (
+				id !== this.accountInfo.id ||
+				password !== this.accountInfo.password
+			)
+				return false;
+		},
+	},
 });

@@ -190,8 +190,8 @@ const createAccount = () => {
 	const { accountInfo } = storeToRefs(store);
 	// ------------------ store 객체에 값 할당
 	accountInfo.value = nonMemberInfo;
-	// ------------------
-	console.log(accountInfo);
+	// ------------------ localStorage에 회원정보 저장
+	store.savedUserInfo();
 	alert('회원가입이 완료되었습니다. 로그인 후 이용해주새요.');
 	router.push({ name: 'login' });
 };

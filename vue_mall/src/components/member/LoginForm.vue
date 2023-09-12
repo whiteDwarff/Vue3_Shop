@@ -1,40 +1,40 @@
 <template>
 	<section class="form-wrap">
 		<h4 class="form-title">LOGIN</h4>
-		<form>
+		<form @submit.prevent="login">
 			<div class="border-bottom">
 				<label for="id-field">ID</label>
 				<input
-					:value="id"
-					@input="$emit('update:id', $event.target.value)"
 					v-focus
+					v-model.trim="loginInfo.id"
 					id="id-field"
 					class="outline-none"
 					type="text"
 				/>
+				<small v-if="idInputMsg !== true" class="font-grey">{{
+					idInputMsg
+				}}</small>
 			</div>
 			<div class="border-bottom">
 				<label for="password-field">PW</label>
 				<input
-					:value="password"
-					@input="$emit('update:password', $event.target.value)"
+					v-model.trim="loginInfo.password"
 					id="password-field"
 					class="outline-none"
 					type="password"
 				/>
+				<small v-if="pwdInputMsg !== true" class="font-grey">{{
+					pwdInputMsg
+				}}</small>
 			</div>
 			<div class="flex-box around">
 				<article>
-					<input
-						:checked="saveInfo"
-						@change="$emit('update:saveInfo', !saveInfo)"
-						type="checkbox"
-					/>
+					<input v-model="loginUser.session" type="checkbox" />
 					<span>REMEBER ME</span>
 				</article>
 				<article>
 					<button
-						:disabled="disabled"
+						:disabled="!isValidateState"
 						class="hover-green submit-button outline-none"
 					>
 						SIGN IN
@@ -47,22 +47,56 @@
 			<span class="bold">or</span>
 			<a class="hover-green">Password?</a>
 		</p>
+		{{ isValidateState }}
 	</section>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { validateId, validatePassword } from '@/utils/validation.js';
+import { computed, ref } from 'vue';
+import { validateId, validatePassword } from '@/utils/validation';
+import { useUserInfoStore } from '@/store/user';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
-const props = defineProps({
-	id: String,
-	password: String,
-	saveInfo: Boolean,
+const loginInfo = ref({
+	id: null,
+	password: null,
+	session: false,
 });
-defineEmits(['update:id', 'update:password', 'update:saveInfo']);
-const disabled = computed(() => {
-	return !validateId(props.id) || !validatePassword(props.password);
+// -----------------------------------------------------------
+const idInputMsg = computed(() => {
+	return validateId(loginInfo.value.id)
+		? true
+		: '아이디는 소문자와 숫자를 포함한 6-12글자로 입력해주세요.';
 });
+const pwdInputMsg = computed(() => {
+	return validatePassword(loginInfo.value.password)
+		? true
+		: '비밀번호는 대소문자와 특수기호, 숫자를 포함한 7-14글자로 작성해주세요.';
+});
+// -----------------------------------------------------------
+const isValidateState = computed(
+	() =>
+		validateId(loginInfo.value.id) &&
+		validatePassword(loginInfo.value.password),
+);
+// -----------------------------------------------------------
+const store = useUserInfoStore();
+const { loginUser } = storeToRefs(store);
+
+const router = useRouter();
+const login = () => {
+	if (store.checkedLoginInfo(loginInfo.value)) {
+		loginUser.value = loginInfo;
+		alert('로그인이 성공되었습니다.');
+		router.push({ name: 'products' });
+	} else if (!store.checkedLoginInfo(loginInfo.value)) {
+		alert('로그인 정보가 일치하지 않습니다.');
+		loginInfo.value.id = null;
+		loginInfo.value.password = null;
+		loginInfo.value.session = false;
+	}
+};
 </script>
 
 <style scoped>
