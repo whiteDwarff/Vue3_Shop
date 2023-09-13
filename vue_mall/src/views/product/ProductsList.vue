@@ -10,33 +10,22 @@
 				@click="moveDetailPage(item.id)"
 				class="grid-item"
 			/>
-
-			<!-- <img v-for="(img, i) in detailImage" :key="i" :src="img" alt="" /> -->
 		</div>
 	</div>
 </template>
 
 <script setup>
 import ProductCard from '@/components/product/ProductCard.vue';
-import { getProductList } from '@/api/index.js';
-import { ref } from 'vue';
+import { useProductStore } from '@/store/product.js';
+import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
-const products = ref([]);
+// ------------------------------------------------------------------
+const store = useProductStore();
 const router = useRouter();
 
-// 데이터 호출
-const fetchedProduct = async () => {
-	const { data } = await getProductList();
-	try {
-		products.value = data;
-		console.dir(data);
-	} catch (err) {
-		console.log(err);
-	}
-};
-fetchedProduct();
-
+store.fetchedProduct();
+const { products } = storeToRefs(store);
 // 상세페이지로 이동
 const moveDetailPage = id => {
 	router.push({

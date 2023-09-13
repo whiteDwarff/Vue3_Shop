@@ -49,7 +49,10 @@
 								<h6 class="option-title">
 									{{ product.name }} ({{ option.size }})
 								</h6>
-								<i class="fa-solid fa-xmark delete-button"></i>
+								<i
+									@click="subtractSize(option.size + ' SIZE' || option.size)"
+									class="fa-solid fa-xmark delete-button"
+								></i>
 							</div>
 							<div class="flex-box align-center space-between">
 								<div class="size-button-wrap flex-box">
@@ -101,23 +104,21 @@
 </template>
 
 <script setup>
+import { useProductStore } from '@/store/product';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { getPostById } from '@/api/index.js';
-import ToggleImage from '@/components/product/ToggleImage.vue';
+import { storeToRefs } from 'pinia';
 
-const product = ref({});
+// const product = ref({});
 const result = ref(0);
 const route = useRoute();
 const size = ref('[필수] 옵션을 선택해주세요.');
 const option = ref({ size: 'none' });
 const selectedSizes = ref([]);
 
-// 데이터 호출
-const fetchedItem = async () => {
-	const data = await getPostById(parseInt(route.params.id));
-	product.value = data;
-};
+const store = useProductStore();
+store.fetchedItem(parseInt(route.params.id));
+const { product } = storeToRefs(store);
 // ------------------------------------------------------------------
 // 제품 수량 증가
 const addCount = index => {
@@ -139,6 +140,12 @@ const selectSize = newSize => {
 		selectedSizes.value.push(newSize.target.value);
 };
 // ------------------------------------------------------------------
+// x 버튼 누르면 selectedSizes의 배열에서 선택한 사이즈 제거
+const subtractSize = size => {
+	const findIndex = selectedSizes.value.indexOf(size);
+	selectedSizes.value.splice(findIndex, 1);
+};
+// ------------------------------------------------------------------
 // 제품구매
 const router = useRouter();
 const payment = () => {
@@ -147,7 +154,7 @@ const payment = () => {
 	});
 };
 
-fetchedItem();
+// fetchedItem();
 </script>
 
 <style scoped>
