@@ -5,7 +5,11 @@ export const useProductStore = defineStore('product', {
 		products: [],
 		product: {},
 	}),
-	getters: {},
+	getters: {
+		labelImage(state) {
+			return state.product.detailImage[0];
+		},
+	},
 	actions: {
 		// 상품 리스트 조회
 		async fetchedProduct() {

@@ -55,8 +55,8 @@
         "select": 0
       },
       {
-        "id": "02",
         "size": 2,
+        "count": 6,
         "select": 0
       }
     ],
@@ -92,8 +92,8 @@
         "select": 0
       },
       {
-        "id": "02",
         "size": 2,
+        "count": 10,
         "select": 0
       }
     ],

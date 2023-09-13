@@ -8,8 +8,10 @@
 				v-for="(item, i) in image"
 				:key="i"
 				:src="item"
-				@click="toggleHandler"
+				@click="toggleHandler(i)"
 			/>
+			<!-- <img :src="image[0]" alt="" />
+			<img :src="image[1]" alt="" /> -->
 		</div>
 	</div>
 </template>
@@ -24,9 +26,8 @@ defineProps({
 	},
 });
 const isToggleState = ref(0);
-const toggleHandler = () => {
-	if (isToggleState.value) isToggleState.value = 0;
-	else isToggleState.value = 1;
+const toggleHandler = i => {
+	return i ? (isToggleState.value = 1) : (isToggleState.value = 0);
 };
 </script>
 

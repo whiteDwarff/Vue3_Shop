@@ -9,7 +9,16 @@ export const useUserInfoStore = defineStore('user', {
 		},
 		accountInfo: JSON.parse(localStorage.getItem('user')) || {},
 	}),
-	getters: {},
+	getters: {
+		totalAdress(state) {
+			const post = state.accountInfo.post;
+			return `[${post.postCode}] ${post.adress} ${post.detailAdress} ${post.extraAdress}`;
+		},
+		totalTel(state) {
+			const tel = state.accountInfo.tel;
+			return `${tel.firstTel}-${tel.middleTel}-${tel.lastTel}`;
+		},
+	},
 	actions: {
 		savedUserInfo() {
 			localStorage.setItem('user', JSON.stringify(this.accountInfo));

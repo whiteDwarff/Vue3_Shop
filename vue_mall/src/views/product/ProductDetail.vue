@@ -108,7 +108,7 @@ import { useProductStore } from '@/store/product';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
-
+import ToggleImage from '@/components/product/ToggleImage.vue';
 // const product = ref({});
 const result = ref(0);
 const route = useRoute();

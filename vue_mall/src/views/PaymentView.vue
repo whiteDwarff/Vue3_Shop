@@ -1,73 +1,46 @@
 <template>
-	<section style="margin: 30%">
-		<!-- 주문하는 고객 정보 -->
-		<!-- <OrdererForm
-			v-model:name="orderer.name"
-			v-model:tel="orderer.tel"
-			:orderer="'주문자'"
-			>
-			<template #footer>
-				<div>
-					<span>이메일</span>
-					<input v-model="orderer.email" type="text" />
-					<span></span>
-				</div>
-			</template>
-		</OrdererForm> -->
-		<!-- 배송지 정보 -->
-		<article id="shipping">
-			<OrdererForm
-				v-model:name="recipient.name"
-				v-model:tel="recipient.tel"
-				:orderer="'배송지'"
-			>
-				<template #footer>
-					<div>
-						<!-- 배송지 추가 -->
-						<PostForm
-							v-model:postCode="post.postCode"
-							v-model:adress="post.adress"
-							v-model:detailAdress="post.detailAdress"
-							v-model:extraAdress="post.extraAdress"
-							@onPosted="execPostcode(post)"
-						/>
-					</div>
-				</template>
-			</OrdererForm>
+	<section class="form-wrap">
+		<h3>배송지</h3>
+		<article id="user-info">
+			<p class="bold">
+				<span class="color-blue">[기본]</span> {{ accountInfo.name }}
+			</p>
+			<p>{{ totalAdress }}</p>
+			<p class="border-box">{{ totalTel }}</p>
+
+			<PostMessage v-model:postMessage="postMessage" />
 		</article>
-		<ProductLabel />
+
+		<!-- <ProductLabel /> -->
 	</section>
 </template>
 
 <script setup>
-import ProductLabel from '@/components/product/ProductLabel.vue';
-import OrdererForm from '@/components/payment/OrdererForm.vue';
-import PostForm from '@/components/payment/PostForm.vue';
-import execPostcode from '@/utils/post.js';
-import { ref, computed } from 'vue';
-import { useRoute } from 'vue-router';
-// ------------------------------------------------------------------
-const { product } = history.state;
-console.log(product);
+import PostMessage from '@/components/payment/PostMessage.vue';
+import { useUserInfoStore } from '@/store/user';
+import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 
-// 주문자 정보
-const orderer = ref({
-	name: '',
-	tel: '',
-	email: '',
-});
-// ------------------------------------------------------------------
-const recipient = ref({
-	name: '',
-	tel: '',
-	post: '',
-});
-const post = ref({
-	postCode: '',
-	adress: '',
-	detailAdress: '',
-	extraAdress: '',
-});
+// -----------------------------------------------------------
+const userStore = useUserInfoStore();
+const { accountInfo } = storeToRefs(userStore);
+const totalAdress = userStore.totalAdress;
+const totalTel = userStore.totalTel;
+// -----------------------------------------------------------
+const postMessage = ref('-- 메시지 선택 (선택사항) --');
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+#user-info * {
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
+}
+.color-blue {
+	color: blue;
+}
+.border-box {
+	border-bottom: 1px solid #ccc;
+	color: #636363;
+	padding-bottom: 3rem;
+}
+</style>
