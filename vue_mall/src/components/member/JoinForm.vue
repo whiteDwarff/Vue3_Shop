@@ -147,6 +147,7 @@ const nonMemberInfo = ref({
 	},
 	post: { postCode: '', adress: '', detailAdress: '', extraAdress: '' },
 	email: '',
+	point: 1000,
 });
 const checkedPassword = ref(null);
 

@@ -1,5 +1,4 @@
 <template>
-	{{ postMessage }}
 	<select :value="postMessage" @change="selected" id="post-message">
 		<option>-- 메시지 선택 (선택사항) --</option>
 		<option value="배송 전에 미리 연락바랍니다.">
@@ -22,10 +21,10 @@
 defineProps({
 	postMessage: String,
 });
-const emit = defineEmits(['update:message']);
+const emit = defineEmits(['update:postMessage']);
 
 const selected = e => {
-	emit('update:messge', e.target.value);
+	emit('update:postMessage', e.target.value);
 };
 </script>
 
@@ -35,11 +34,13 @@ const selected = e => {
 	width: 100%;
 	padding: 1%;
 	outline: none;
+	border-color: #bbb;
 }
 #message-input {
 	width: calc(100% - 2%);
 	padding: 1%;
 	resize: none;
 	outline: none;
+	border-color: #bbb;
 }
 </style>

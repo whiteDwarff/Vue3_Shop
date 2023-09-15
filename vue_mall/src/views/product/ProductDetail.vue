@@ -1,5 +1,5 @@
 <template>
-	<div id="product-section">
+	<div class="wrap">
 		<section id="product-info">
 			<article class="article">
 				<ToggleImage :image="product.detailImage" />
@@ -164,10 +164,6 @@ const payment = () => {
 }
 .none {
 	display: none;
-}
-#product-section {
-	width: 70%;
-	margin: 16rem auto 0 auto;
 }
 #product-info {
 	width: 100%;

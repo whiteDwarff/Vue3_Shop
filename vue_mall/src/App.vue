@@ -34,6 +34,10 @@ a {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+.wrap {
+	width: 70%;
+	margin: 16rem auto 0 auto;
+}
 .form-title {
 	font-size: 1.5rem;
 	font-weight: bold;
@@ -88,6 +92,9 @@ label {
 }
 .hover-green:hover {
 	color: #f00;
+	cursor: pointer;
+}
+.pointer {
 	cursor: pointer;
 }
 </style>
