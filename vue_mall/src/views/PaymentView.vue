@@ -1,26 +1,41 @@
 <template>
-	<section class="wrap">
+	<form class="wrap">
 		<!-- 배송지 정보 -->
-		<GuideTitle title="배송지" />
-		<article id="user-info">
+		<GuideTitle
+			title="배송지"
+			v-model:option="isDisplayOption.post"
+			@updateOption="isDisplayOption.post = $e"
+		/>
+		<article id="user-info" v-if="isDisplayOption.post">
 			<p class="bold">
 				<span class="color-blue">[기본]</span> {{ accountInfo.name }}
 			</p>
 			<p>{{ totalAdress }}</p>
 			<p class="border-box">{{ totalTel }}</p>
 			<!-- 배송 메시지 컴포넌트 -->
-			<PostMessage v-model:postMessage="postMessage" />
+			<PostMessage
+				v-model:postMessage="postMessage"
+				v-model:requestMessage="postRequestMessage"
+			/>
 		</article>
 
 		<!-- 주문상품 정보  -->
-		<GuideTitle title="주문상품" />
-		<ProductLabel>
+		<GuideTitle
+			title="주문상품"
+			v-model:option="isDisplayOption.product"
+			@updateOption="isDisplayOption.product = $e"
+		/>
+		<ProductLabel v-if="isDisplayOption.product">
 			<template #footer> </template>
 		</ProductLabel>
 
 		<!-- 할인 및 부가결제 -->
-		<GuideTitle title="할인/부가결제" />
-		<article id="point-box">
+		<GuideTitle
+			title="할인/부가결제"
+			v-model:option="isDisplayOption.pointInfo"
+			@updateOption="isDisplayOption.pointInfo = $e"
+		/>
+		<article id="point-box" v-if="isDisplayOption.pointInfo">
 			<div id="point-wrap" class="flex-box align-center">
 				<label for="point">적립금</label>
 				<div class="flex-box">
@@ -42,8 +57,12 @@
 		</article>
 
 		<!-- 결제정보 -->
-		<GuideTitle title="결제정보" />
-		<article id="price-info">
+		<GuideTitle
+			title="결제정보"
+			v-model:option="isDisplayOption.priceInfo"
+			@updateOption="isDisplayOption.priceInfo = $e"
+		/>
+		<article id="price-info" v-if="isDisplayOption.priceInfo">
 			<div class="flex-box space-between">
 				<span>주문상품</span>
 				<span>{{ totalPrice.toLocaleString() }}원</span>
@@ -62,13 +81,42 @@
 		</article>
 
 		<!-- 결제수단 -->
-		<GuideTitle title="결제수단" />
+		<GuideTitle
+			title="결제수단"
+			v-model:option="isDisplayOption.bankInfo"
+			@updateOption="isDisplayOption.bankInfo = $e"
+		/>
 		<CashReceiptView
+			v-if="isDisplayOption.bankInfo"
 			v-model:cashReceipt="cashReceipt"
 			v-model:cashReceiptInfo="cashReceiptInfo"
+			v-model:firstNumber="number.firstNumber"
+			v-model:middleNumber="number.middleNumber"
+			v-model:lastNumber="number.lastNumber"
+			v-model:businessesNumber="businessesNumber"
 			:ownerBank="ownerBank"
 		/>
-	</section>
+
+		<!-- 적립 혜택 -->
+		<GuideTitle
+			title="적립 혜택"
+			v-model:option="isDisplayOption.credit"
+			@updateOption="isDisplayOption.credit = $e"
+		/>
+		<article v-if="isDisplayOption.credit">
+			<div class="flex-box space-between">
+				<span class="font">상품별 적립금</span>
+				<span class="font">{{ (totalPrice * 0.01).toLocaleString() }}원</span>
+			</div>
+		</article>
+
+		<article id="submit-box">
+			<h2 class="font">주문 내용을 확인하였으며 약관에 동의합니다.</h2>
+			<button id="submit-button" class="pointer font">
+				{{ totalPrice.toLocaleString() }}원 결제하기
+			</button>
+		</article>
+	</form>
 </template>
 
 <script setup>
@@ -79,9 +127,10 @@ import ProductLabel from '@/components/product/ProductLabel.vue';
 import { useUserInfoStore } from '@/store/user';
 import { useProductStore } from '@/store/product';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 // -----------------------------------------------------------
+// pinia import
 const userStore = useUserInfoStore();
 const { accountInfo } = storeToRefs(userStore);
 const totalAdress = userStore.totalAdress;
@@ -90,8 +139,18 @@ const totalTel = userStore.totalTel;
 const productStore = useProductStore();
 const { product } = storeToRefs(productStore);
 // -----------------------------------------------------------
+// default 배송 옵션 (select)
 const postMessage = ref('-- 메시지 선택 (선택사항) --');
+// 요청사항 (input)
+const postRequestMessage = ref('');
 
+const addPostMessage = computed(() => {
+	return postMessage.value === '직접 입력'
+		? postRequestMessage.value
+		: postMessage.value;
+});
+// -----------------------------------------------------------
+// 적립금 사용란
 const point = ref(0);
 const addPoint = () => {
 	point.value = accountInfo.value.point;
@@ -105,6 +164,7 @@ const pointInput = () => {
 	}
 };
 // -----------------------------------------------------------
+// 상품의 총 금액
 const totalPrice = ref(0);
 const sumPrice = () => {
 	let sum = 0;
@@ -115,9 +175,46 @@ const sumPrice = () => {
 };
 sumPrice();
 // -----------------------------------------------------------
+// 현금영수증 발급
 const ownerBank = ref('하나은행 : 28791036517807 강문호');
 const cashReceipt = ref('신청안함');
 const cashReceiptInfo = ref('individual');
+
+//현금영수증 개인번호
+const number = ref({
+	firstNumber: '010',
+	middleNumber: '',
+	lastNumber: '',
+});
+// 현금영수증 사업자번호
+const businessesNumber = ref('');
+const addNumberInfo = computed(() => {
+	return cashReceiptInfo.value === 'individual'
+		? number.value
+		: businessesNumber.value;
+});
+// -----------------------------------------------------------
+const isDisplayOption = ref({
+	post: true,
+	product: true,
+	pointInfo: true,
+	priceInfo: true,
+	bankInfo: true,
+	credit: true,
+});
+
+// -----------------------------------------------------------
+// const orderInfo = {
+// 	userName: accountInfo.name,
+// 	tel: totalTel,
+// 	adress: totalAdress,
+// 	postMessage: addPostMessage,
+// 	productId: product.id,
+// 	productName: product.name,
+// 	cashReceipt,
+// 	cashReceiptInfo,
+// 	number: addNumberInfo,
+// };
 </script>
 
 <style scoped>
@@ -125,10 +222,10 @@ const cashReceiptInfo = ref('individual');
 	width: 50%;
 }
 section {
-	background-color: #f3f3f3;
+	/* background-color: #f3f3f3; */
 }
 article {
-	margin-bottom: 6rem;
+	margin-bottom: 4rem;
 	padding: 3rem 0;
 	background-color: #fff;
 }
@@ -192,5 +289,17 @@ article {
 .color-red {
 	color: #f00;
 	font-weight: bold;
+}
+#submit-box {
+	text-align: center;
+}
+#submit-button {
+	width: 100%;
+	padding: 1rem;
+	margin: 2rem 0;
+	color: #fff;
+	border: none;
+
+	background-color: #3971ff;
 }
 </style>

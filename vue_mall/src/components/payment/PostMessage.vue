@@ -14,17 +14,26 @@
 		<option value="택배함에 보관해 주세요.">택배함에 보관해 주세요.</option>
 		<option>직접 입력</option>
 	</select>
-	<textarea v-if="postMessage === '직접 입력'" type="text" id="message-input" />
+	<textarea
+		v-if="postMessage === '직접 입력'"
+		@input="updateRequestMessage"
+		type="text"
+		id="message-input"
+	/>
 </template>
 
 <script setup>
 defineProps({
 	postMessage: String,
+	requestMessage: String,
 });
-const emit = defineEmits(['update:postMessage']);
+const emit = defineEmits(['update:postMessage', 'update:requestMessage']);
 
 const selected = e => {
 	emit('update:postMessage', e.target.value);
+};
+const updateRequestMessage = e => {
+	emit('update:requestMessage', e.target.value);
 };
 </script>
 

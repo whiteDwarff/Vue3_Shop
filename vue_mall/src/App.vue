@@ -97,4 +97,7 @@ label {
 .pointer {
 	cursor: pointer;
 }
+.font {
+	font-size: 1.5rem;
+}
 </style>
