@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap">
+	<div class="product-wrap">
 		<section id="product-info">
 			<article class="article">
 				<ToggleImage :image="product.detailImage" />
@@ -50,7 +50,9 @@
 									{{ product.name }} ({{ option.size }})
 								</h6>
 								<i
-									@click="subtractSize(option.size + ' SIZE' || option.size)"
+									@click="
+										subtractSize(option.size + ' SIZE' || option.size, index)
+									"
 									class="fa-solid fa-xmark delete-button"
 								></i>
 							</div>
@@ -58,12 +60,12 @@
 								<div class="size-button-wrap flex-box">
 									<!-- 수량빼기 버튼 -->
 									<button @click="subtractCount(index)">
-										<i class="fa-solid fa-minus"></i>
+										<i class="fa-solid fa-minus pointer"></i>
 									</button>
 									<span>{{ option.select }}</span>
 									<!-- 수량 더하기 버튼 -->
 									<button @click="addCount(index)" id="add-button">
-										<i class="fa-solid fa-plus"></i>
+										<i class="fa-solid fa-plus pointer"></i>
 									</button>
 								</div>
 								<small>
@@ -141,17 +143,26 @@ const selectSize = newSize => {
 };
 // ------------------------------------------------------------------
 // x 버튼 누르면 selectedSizes의 배열에서 선택한 사이즈 제거
-const subtractSize = size => {
+const subtractSize = (size, index) => {
+	// 현재 선택한 수량
+	let currentSelect = product.value.stock[index].select;
+	// x를 누르면 선택한 수량 초기화 및 result에서 선택한 수량만큼 빼기
+	product.value.stock[index].select = 0;
+	result.value -= currentSelect;
 	const findIndex = selectedSizes.value.indexOf(size);
 	selectedSizes.value.splice(findIndex, 1);
 };
 // ------------------------------------------------------------------
 // 제품구매
 const router = useRouter();
+
 const payment = () => {
-	router.push({
-		name: 'payment',
-	});
+	if (!selectedSizes.value.length) alert('최소 주문수량은 1개 입니다.');
+	else {
+		router.push({
+			name: 'payment',
+		});
+	}
 };
 
 // fetchedItem();

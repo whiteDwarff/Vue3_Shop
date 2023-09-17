@@ -5,8 +5,10 @@
 			<input :value="ownerBank" type="text" disabled />
 		</div>
 		<div class="bank-info flex-box align-center">
-			<label class="font">입금자명</label>
-			<input :value="accountInfo.name" type="text" />
+			<label class="font"
+				>입금자명 <i class="fa-sharp fa-regular fa-asterisk fa-2xs"></i
+			></label>
+			<input @input="updateDepositName" type="text" />
 		</div>
 
 		<!-- 현금영수증 신청여부 -->
@@ -74,14 +76,7 @@
 
 <script setup>
 import NumberForm from '@/components/member/NumberForm.vue';
-
-import { useUserInfoStore } from '@/store/user';
-import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
-// -----------------------------------------------------------
-const store = useUserInfoStore();
-const { accountInfo } = storeToRefs(store);
-// -----------------------------------------------------------
 
 const props = defineProps({
 	ownerBank: String,
@@ -91,6 +86,7 @@ const props = defineProps({
 	middleNumber: String,
 	lastNumber: String,
 	businessesNumber: String,
+	depositName: String,
 });
 // -----------------------------------------------------------
 const emit = defineEmits([
@@ -100,10 +96,14 @@ const emit = defineEmits([
 	'update:middleNumber',
 	'update:lastNumber',
 	'update:businessesNumber',
+	'update:depositName',
 ]);
 // -----------------------------------------------------------
 const updateCashReceipt = e => {
 	emit('update:cashReceipt', e.target.value);
+};
+const updateDepositName = e => {
+	emit('update:depositName', e.target.value);
 };
 const updateCashReceiptInfo = e => {
 	emit('update:cashReceiptInfo', e.target.value);
@@ -163,5 +163,8 @@ input[type='radio'] {
 	outline: none;
 	padding: 1rem 0;
 	border: 1px solid #bbb;
+}
+.fa-sharp {
+	color: rgb(141, 4, 4);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<form class="wrap">
+	<form class="wrap" @submit.prevent="buyNow">
 		<!-- 배송지 정보 -->
 		<GuideTitle
 			title="배송지"
@@ -45,7 +45,7 @@
 						id="point"
 						type="text"
 					/>
-					<button @click="addPoint" class="pointer">전액 사용</button>
+					<button @click.prevent="addPoint" class="pointer">전액 사용</button>
 				</div>
 			</div>
 			<div id="detail-point">
@@ -74,7 +74,7 @@
 			<div class="flex-box space-between">
 				<span>할인/부가결제</span>
 				<span
-					><span class="color-red">-{{ point.toLocaleString() }}</span
+					><span class="red bold">-{{ point.toLocaleString() }}</span
 					>원</span
 				>
 			</div>
@@ -94,6 +94,7 @@
 			v-model:middleNumber="number.middleNumber"
 			v-model:lastNumber="number.lastNumber"
 			v-model:businessesNumber="businessesNumber"
+			v-model:depositName="depositName"
 			:ownerBank="ownerBank"
 		/>
 
@@ -113,7 +114,7 @@
 		<article id="submit-box">
 			<h2 class="font">주문 내용을 확인하였으며 약관에 동의합니다.</h2>
 			<button id="submit-button" class="pointer font">
-				{{ totalPrice.toLocaleString() }}원 결제하기
+				{{ finalPrice.toLocaleString() }}원 결제하기
 			</button>
 		</article>
 	</form>
@@ -124,10 +125,13 @@ import PostMessage from '@/components/payment/PostMessage.vue';
 import GuideTitle from '@/components/payment/GuideTitle.vue';
 import CashReceiptView from '@/components/payment/CashReceiptView.vue';
 import ProductLabel from '@/components/product/ProductLabel.vue';
+import currentDate from '@/utils/date';
 import { useUserInfoStore } from '@/store/user';
 import { useProductStore } from '@/store/product';
+import { useOrderListStore } from '@/store/order';
 import { storeToRefs } from 'pinia';
 import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 // -----------------------------------------------------------
 // pinia import
@@ -138,6 +142,11 @@ const totalTel = userStore.totalTel;
 // -----------------------------------------------------------
 const productStore = useProductStore();
 const { product } = storeToRefs(productStore);
+const { products } = storeToRefs(productStore);
+const labelImage = productStore.labelImage;
+// -----------------------------------------------------------
+const orderListStore = useOrderListStore();
+const { orderList } = storeToRefs(orderListStore);
 // -----------------------------------------------------------
 // default 배송 옵션 (select)
 const postMessage = ref('-- 메시지 선택 (선택사항) --');
@@ -174,10 +183,14 @@ const sumPrice = () => {
 	totalPrice.value = sum * product.value.price;
 };
 sumPrice();
+const finalPrice = computed(() => {
+	return totalPrice.value - point.value;
+});
 // -----------------------------------------------------------
 // 현금영수증 발급
-const ownerBank = ref('하나은행 : 28791036517807 강문호');
-const cashReceipt = ref('신청안함');
+const ownerBank = ref('[하나은행] 28791036517807 강문호');
+const cashReceipt = ref('false');
+const depositName = ref('');
 const cashReceiptInfo = ref('individual');
 
 //현금영수증 개인번호
@@ -194,6 +207,26 @@ const addNumberInfo = computed(() => {
 		: businessesNumber.value;
 });
 // -----------------------------------------------------------
+const count = ref([]);
+const addCount = () => {
+	product.value.stock.forEach(el => {
+		// if (el.select) {
+		const obj = {
+			id: product.value.id,
+			name: product.value.name,
+			image: labelImage,
+			price: product.value.price,
+			size: el.size,
+			select: el.select,
+		};
+
+		count.value.push(obj);
+	});
+};
+addCount();
+
+// -----------------------------------------------------------
+// 버튼 클릭 시 요소 숨김
 const isDisplayOption = ref({
 	post: true,
 	product: true,
@@ -202,28 +235,70 @@ const isDisplayOption = ref({
 	bankInfo: true,
 	credit: true,
 });
-
 // -----------------------------------------------------------
-// const orderInfo = {
-// 	userName: accountInfo.name,
-// 	tel: totalTel,
-// 	adress: totalAdress,
-// 	postMessage: addPostMessage,
-// 	productId: product.id,
-// 	productName: product.name,
-// 	cashReceipt,
-// 	cashReceiptInfo,
-// 	number: addNumberInfo,
-// };
+// 결제 버튼 클릭 시 제품 수량 최신화
+const productsUpdate = () => {
+	products.value.forEach(el => {
+		if (el.name === product.value.name) {
+			count.value.forEach(({ size, select }, i) => {
+				if (size === el.stock[i].size) el.stock[i].count -= select;
+			});
+		}
+	});
+};
+// -----------------------------------------------------------
+const buyNow = () => {
+	if (depositName.value === '') alert('입금자명을 입력해주세요.');
+	else {
+		// 주문 내역
+		const newOrderInfo = ref({
+			id: orderList.value.length,
+			orderInfo: {
+				date: currentDate.value,
+				state: '입금전',
+				userName: accountInfo.value.name,
+			},
+			paymentInfo: {
+				totalPrice: totalPrice.value,
+				usePoint: point.value,
+				finalPrice: finalPrice.value,
+				bankInfo: ownerBank.value,
+				depositName: depositName.value,
+			},
+			productInfo: {
+				product: count.value,
+			},
+			receiptInfo: {
+				cashReceipt: cashReceipt.value,
+				cashReceiptInfo: cashReceiptInfo.value,
+				receiptNumber: addNumberInfo.value,
+			},
+			postInfo: {
+				userName: accountInfo.value.name,
+				adress: totalAdress,
+				tel: totalTel,
+				postMessage: addPostMessage.value,
+			},
+		});
+		// 사용자 적립금 최신화
+		accountInfo.value.point =
+			accountInfo.value.point - point.value + totalPrice.value * 0.01;
+		// 상품 수량 최신화
+		productsUpdate();
+
+		// orderInfo.value = newOrderInfo.value;
+		orderList.value.push(newOrderInfo.value);
+
+		const router = useRouter();
+		router.push({
+			name: 'orderList',
+			params: { id: newOrderInfo.value.id },
+		});
+	}
+};
 </script>
 
 <style scoped>
-.wrap {
-	width: 50%;
-}
-section {
-	/* background-color: #f3f3f3; */
-}
 article {
 	margin-bottom: 4rem;
 	padding: 3rem 0;
@@ -285,10 +360,6 @@ article {
 }
 #price-info div span {
 	font-size: 1.5rem;
-}
-.color-red {
-	color: #f00;
-	font-weight: bold;
 }
 #submit-box {
 	text-align: center;

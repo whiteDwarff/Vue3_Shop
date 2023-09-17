@@ -35,7 +35,11 @@ a {
 	transform: translate(-50%, -50%);
 }
 .wrap {
-	width: 70%;
+	width: 50%;
+	margin: 16rem auto 0 auto;
+}
+.product-wrap {
+	width: 60%;
 	margin: 16rem auto 0 auto;
 }
 .form-title {
@@ -75,6 +79,9 @@ label {
 .align-center {
 	align-items: baseline;
 }
+.align-bottom {
+	align-items: baseline;
+}
 .submit-button {
 	background-color: #fff;
 	font-size: 1.3rem;
@@ -99,5 +106,11 @@ label {
 }
 .font {
 	font-size: 1.5rem;
+}
+.blue {
+	color: #3971ff;
+}
+.red {
+	color: #f00;
 }
 </style>
