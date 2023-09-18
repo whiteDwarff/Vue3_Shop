@@ -25,7 +25,7 @@
 		<h4 class="bold font">주문 상품 정보</h4>
 		<article>
 			<ProductLabell
-				v-for="item in orderInfo.productInfo.product"
+				v-for="item in orderInfo.productInfo"
 				:key="item"
 				:item="item"
 			/>
@@ -124,7 +124,7 @@
 		</article>
 		<div id="button-wrap">
 			<button @click="moveMainPage" class="bold pointer">홈으로</button>
-			<button class="bold pointer">주문내역</button>
+			<button @click="moveListPage" class="bold pointer">주문내역</button>
 		</div>
 	</section>
 </template>
@@ -159,6 +159,11 @@ const router = useRouter();
 const moveMainPage = () => {
 	router.push({
 		name: 'products',
+	});
+};
+const moveListPage = () => {
+	router.push({
+		name: 'orderList',
 	});
 };
 </script>
@@ -212,6 +217,10 @@ article {
 	padding: 1rem;
 	border: none;
 	background-color: #fff;
+}
+#button-wrap button:first-child {
+	border: 1px solid #000;
+	border-radius: 10px;
 }
 #button-wrap button:last-child {
 	margin-right: 0;

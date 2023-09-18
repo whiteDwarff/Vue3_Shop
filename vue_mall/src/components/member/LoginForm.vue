@@ -37,7 +37,7 @@
 						:disabled="!isValidateState"
 						class="hover-green submit-button outline-none"
 					>
-						SIGN IN
+						LOGIN
 					</button>
 				</article>
 			</div>
@@ -47,7 +47,6 @@
 			<span class="bold">or</span>
 			<a class="hover-green">Password?</a>
 		</p>
-		{{ isValidateState }}
 	</section>
 </template>
 
@@ -67,7 +66,7 @@ const loginInfo = ref({
 const idInputMsg = computed(() => {
 	return validateId(loginInfo.value.id)
 		? true
-		: '아이디는 소문자와 숫자를 포함한 6-12글자로 입력해주세요.';
+		: '아이디는 소문자와 숫자를 포함한 6-14글자로 입력해주세요.';
 });
 const pwdInputMsg = computed(() => {
 	return validatePassword(loginInfo.value.password)
@@ -88,7 +87,6 @@ const router = useRouter();
 const login = () => {
 	if (store.checkedLoginInfo(loginInfo.value)) {
 		loginUser.value = loginInfo;
-		alert('로그인이 성공되었습니다.');
 		router.push({ name: 'products' });
 	} else if (!store.checkedLoginInfo(loginInfo.value)) {
 		alert('로그인 정보가 일치하지 않습니다.');

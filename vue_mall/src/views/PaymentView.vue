@@ -27,7 +27,8 @@
 		/>
 		<template v-if="isDisplayOption.product">
 			<article>
-				<ProductLabell v-for="item in count" :key="item" :item="item" />
+				<ProductLabell v-for="item in count" :key="item" :item="item">
+				</ProductLabell>
 			</article>
 		</template>
 
@@ -267,9 +268,7 @@ const buyNow = () => {
 				bankInfo: ownerBank.value,
 				depositName: depositName.value,
 			},
-			productInfo: {
-				product: count.value,
-			},
+			productInfo: [...count.value],
 			receiptInfo: {
 				cashReceipt: cashReceipt.value,
 				cashReceiptInfo: cashReceiptInfo.value,
@@ -293,7 +292,7 @@ const buyNow = () => {
 
 		const router = useRouter();
 		router.push({
-			name: 'orderList',
+			name: 'orderHistory',
 			params: { id: newOrderInfo.value.id },
 		});
 	}

@@ -88,7 +88,7 @@ aside {
 	position: fixed;
 	top: 12rem;
 	left: 0;
-	width: 20%;
+	width: 15%;
 	padding: 10rem 3rem;
 }
 #title {

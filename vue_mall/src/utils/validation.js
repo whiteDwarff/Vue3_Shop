@@ -1,5 +1,5 @@
 const validateId = id => {
-	const reg = /^(?=.*\d)(?=.*[a-z])[0-9a-z]{6,12}$/;
+	const reg = /^(?=.*\d)(?=.*[a-z])[0-9a-z]{6,14}$/;
 	return reg.test(id);
 };
 

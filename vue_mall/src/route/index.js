@@ -44,9 +44,14 @@ const routes = [
 		component: () => import('@/views/PaymentView.vue'),
 	},
 	{
-		path: '/orderList/:id',
+		path: '/orderHistory/:id',
+		name: 'orderHistory',
+		component: () => import('@/views/order/OrderHistory.vue'),
+	},
+	{
+		path: '/orderList',
 		name: 'orderList',
-		component: () => import('@/views/order/OrderListView.vue'),
+		component: () => import('@/views/order/OrderList.vue'),
 	},
 ];
 

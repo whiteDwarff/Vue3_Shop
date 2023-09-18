@@ -1,21 +1,19 @@
 <template>
 	<div class="flex-box product-label">
-		<template
-			v-if="
-				item.size === 'FREE' || (typeof item.size === 'number' && item.select)
-			"
-		>
-			<img :src="item.image" @click="moveDetailPage(item.id)" class="pointer" />
-			<div class="info-box">
-				<span class="font bold">{{ item.name }}</span>
-				<span v-if="typeof item.size === 'number'" class="font"
-					>[옵션 : {{ item.size }} SIZE]</span
-				>
-				<span v-else class="font">[옵션 : {{ item.size }}]</span>
-				<span class="font count">수량: {{ item.select }}개</span>
-				<span class="font">{{ item.price.toLocaleString() }}원</span>
-			</div>
-		</template>
+		<slot name="header"></slot>
+
+		<img :src="item.image" @click="moveDetailPage(item.id)" class="pointer" />
+		<div class="info-box">
+			<span class="font bold">{{ item.name }}</span>
+			<span v-if="typeof item.size === 'number'" class="font grey"
+				>[옵션 : {{ item.size }} SIZE]</span
+			>
+			<span v-else class="font grey">[옵션 : {{ item.size }}]</span>
+			<span class="font count grey">수량: {{ item.select }}개</span>
+			<span class="font">{{ item.price.toLocaleString() }}원</span>
+		</div>
+
+		<slot name="footer"></slot>
 	</div>
 </template>
 
@@ -41,13 +39,14 @@ img {
 	height: 10%;
 }
 .info-box {
+	width: 60%;
 	padding: 0 5rem;
 	margin: auto 0;
+	/* background-color: #f00; */
 }
 .info-box span:last-child {
 	margin: 0;
 }
-
 .count {
 	margin-top: -1rem;
 }

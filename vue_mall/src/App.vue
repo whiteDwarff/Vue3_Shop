@@ -51,6 +51,9 @@ a {
 	border-bottom: 1px solid #000;
 	margin-bottom: 3rem;
 }
+.border-grey {
+	border-bottom: 1px solid #bbb;
+}
 label {
 	font-size: 1.2rem;
 	display: inline-block;
@@ -112,5 +115,8 @@ label {
 }
 .red {
 	color: #f00;
+}
+.grey {
+	color: rgb(88, 88, 88);
 }
 </style>

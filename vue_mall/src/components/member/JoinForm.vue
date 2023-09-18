@@ -155,7 +155,7 @@ const checkedPassword = ref(null);
 const idInputMsg = computed(() => {
 	return validateId(nonMemberInfo.value.id)
 		? true
-		: '아이디는 소문자와 숫자를 포함한 6-12글자로 입력해주세요.';
+		: '아이디는 소문자와 숫자를 포함한 6-14글자로 입력해주세요.';
 });
 const pwdInputMsg = computed(() =>
 	validatePassword(nonMemberInfo.value.password)

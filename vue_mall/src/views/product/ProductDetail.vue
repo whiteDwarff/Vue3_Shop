@@ -184,7 +184,7 @@ const payment = () => {
 	width: 60%;
 }
 #product-info article:last-child {
-	width: 20%;
+	width: 40%;
 	padding: 7rem 0;
 }
 #detail-title {
@@ -236,7 +236,7 @@ select {
 	cursor: pointer;
 }
 .button-wrap button {
-	width: 15rem;
+	width: 45%;
 	height: 5rem;
 	border-radius: 0.6rem;
 	border: none;
@@ -245,11 +245,12 @@ select {
 	background-color: #000;
 	font-weight: bold;
 }
+
 .button-wrap button:first-child {
 	background-color: #fff;
 	color: #000;
 	border: 1px solid #000;
-	margin-right: 3rem;
+	margin-right: 10%;
 }
 .size-button-wrap {
 	text-align: center;
