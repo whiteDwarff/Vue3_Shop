@@ -36,7 +36,7 @@ a {
 }
 .wrap {
 	width: 50%;
-	margin: 16rem auto 0 auto;
+	margin: 22rem auto 0 auto;
 }
 .product-wrap {
 	width: 60%;

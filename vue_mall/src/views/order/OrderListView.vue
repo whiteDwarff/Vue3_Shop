@@ -2,6 +2,7 @@
 	<section class="wrap">
 		<h3 class="bold" id="title">주문상세조회</h3>
 
+		<!-- 주문정보 -->
 		<h4 class="bold font">주문정보</h4>
 		<article>
 			<div class="table-box">
@@ -20,6 +21,16 @@
 			</div>
 		</article>
 
+		<!-- 주문 상품 정보 -->
+		<h4 class="bold font">주문 상품 정보</h4>
+		<article>
+			<ProductLabell
+				v-for="item in orderInfo.productInfo.product"
+				:key="item"
+				:item="item"
+			/>
+		</article>
+		<!-- 결제 정보 -->
 		<h4 class="bold font">결제정보</h4>
 		<article>
 			<div class="table-box">
@@ -52,6 +63,7 @@
 			</div>
 		</article>
 
+		<!-- 현금영수증 -->
 		<h4 class="bold font">현금영수증</h4>
 		<article>
 			<div class="table-box">
@@ -79,6 +91,7 @@
 			</div>
 		</article>
 
+		<!-- 배송지정보 -->
 		<h4 class="bold font">배송지정보</h4>
 		<article>
 			<div class="table-box">
@@ -109,15 +122,19 @@
 				</div>
 			</div>
 		</article>
+		<div id="button-wrap">
+			<button @click="moveMainPage" class="bold pointer">홈으로</button>
+			<button class="bold pointer">주문내역</button>
+		</div>
 	</section>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useOrderListStore } from '@/store/order';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
-
+import ProductLabell from '@/components/product/ProductLabell.vue';
 const route = useRoute();
 const id = parseInt(route.params.id);
 // -----------------------------------------------------------
@@ -138,6 +155,12 @@ const finalNumber = computed(() => {
 		? receiptNumber.value
 		: orderInfo.value.receiptInfo.receiptNumber;
 });
+const router = useRouter();
+const moveMainPage = () => {
+	router.push({
+		name: 'products',
+	});
+};
 </script>
 
 <style scoped>
@@ -151,7 +174,6 @@ article {
 	padding: 2rem 0;
 }
 .table-box {
-	/* padding: 3rem 0; */
 	border-top: 1px solid #bbb;
 }
 .label {
@@ -165,11 +187,13 @@ article {
 }
 .flex-box {
 	border-bottom: 1px solid #bbb;
-	/* padding: 1rem; */
 }
 .border-none {
 	border: none;
 	padding: 0;
+}
+.product-label:first-child {
+	border-top: 1px solid #bbb;
 }
 #bd-top {
 	border: 1px solid #000;
@@ -178,5 +202,21 @@ article {
 #bd-bottom {
 	border: 1px solid #000;
 	border-top: none;
+}
+#button-wrap {
+	padding: 3rem 0;
+}
+#button-wrap button {
+	width: 45%;
+	margin-right: 10%;
+	padding: 1rem;
+	border: none;
+	background-color: #fff;
+}
+#button-wrap button:last-child {
+	margin-right: 0;
+	background-color: #000;
+	color: #fff;
+	border-radius: 10px;
 }
 </style>

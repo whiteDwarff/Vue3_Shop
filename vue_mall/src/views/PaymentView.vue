@@ -25,9 +25,11 @@
 			v-model:option="isDisplayOption.product"
 			@updateOption="isDisplayOption.product = $e"
 		/>
-		<ProductLabel v-if="isDisplayOption.product">
-			<template #footer> </template>
-		</ProductLabel>
+		<template v-if="isDisplayOption.product">
+			<article>
+				<ProductLabell v-for="item in count" :key="item" :item="item" />
+			</article>
+		</template>
 
 		<!-- 할인 및 부가결제 -->
 		<GuideTitle
@@ -124,7 +126,7 @@
 import PostMessage from '@/components/payment/PostMessage.vue';
 import GuideTitle from '@/components/payment/GuideTitle.vue';
 import CashReceiptView from '@/components/payment/CashReceiptView.vue';
-import ProductLabel from '@/components/product/ProductLabel.vue';
+import ProductLabell from '@/components/product/ProductLabell.vue';
 import currentDate from '@/utils/date';
 import { useUserInfoStore } from '@/store/user';
 import { useProductStore } from '@/store/product';
@@ -210,17 +212,17 @@ const addNumberInfo = computed(() => {
 const count = ref([]);
 const addCount = () => {
 	product.value.stock.forEach(el => {
-		// if (el.select) {
-		const obj = {
-			id: product.value.id,
-			name: product.value.name,
-			image: labelImage,
-			price: product.value.price,
-			size: el.size,
-			select: el.select,
-		};
-
-		count.value.push(obj);
+		if (el.select) {
+			const obj = {
+				id: product.value.id,
+				name: product.value.name,
+				image: labelImage,
+				price: product.value.price,
+				size: el.size,
+				select: el.select,
+			};
+			count.value.push(obj);
+		}
 	});
 };
 addCount();

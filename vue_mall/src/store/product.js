@@ -23,6 +23,7 @@ export const useProductStore = defineStore('product', {
 		// ------------------------------------------------------------------
 		// 하나의 상품 조회
 		async fetchedItem(id) {
+			console.log(id);
 			try {
 				const data = await getPostById(id);
 				this.product = data;
