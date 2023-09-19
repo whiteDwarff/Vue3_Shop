@@ -1,10 +1,17 @@
 <template>
 	<div class="flex-box product-label">
 		<slot name="header"></slot>
-
-		<img :src="item.image" @click="moveDetailPage(item.id)" class="pointer" />
+		<img
+			v-if="item.image"
+			:src="item.image"
+			@click="moveDetailPage(item.id)"
+			class="pointer"
+		/>
 		<div class="info-box">
-			<span class="font bold">{{ item.name }}</span>
+			<div class="flex-box align-bottom">
+				<span class="font bold">{{ item.name }}</span>
+				<span v-if="ohter" id="ohter" class="bold">{{ ohter }}</span>
+			</div>
 			<span v-if="typeof item.size === 'number'" class="font grey"
 				>[옵션 : {{ item.size }} SIZE]</span
 			>
@@ -21,7 +28,8 @@
 import { useRouter } from 'vue-router';
 
 defineProps({
-	item: Object,
+	item: Object || '',
+	ohter: String || '',
 });
 const router = useRouter();
 const moveDetailPage = id => {
@@ -42,7 +50,12 @@ img {
 	width: 60%;
 	padding: 0 5rem;
 	margin: auto 0;
-	/* background-color: #f00; */
+}
+.info-box div:first-child span:first-child {
+	margin-bottom: 1rem;
+}
+#ohter {
+	margin-left: 1rem;
 }
 .info-box span:last-child {
 	margin: 0;

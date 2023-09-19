@@ -24,7 +24,7 @@ import { useRouter } from 'vue-router';
 const store = useProductStore();
 const router = useRouter();
 
-store.fetchedProduct();
+// store.fetchedProduct();
 const { products } = storeToRefs(store);
 // 상세페이지로 이동
 const moveDetailPage = id => {

@@ -1,6 +1,10 @@
 <script setup>
 // ------------------------------------------------------------
 import AppHeader from '@/views/AppHeader.vue';
+import { useProductStore } from '@/store/product.js';
+
+const store = useProductStore();
+store.fetchedProduct();
 </script>
 
 <template>

@@ -5,7 +5,10 @@
 				<ToggleImage :image="product.detailImage" />
 			</article>
 			<article class="article">
-				<h6 id="detail-title">{{ product.name }}</h6>
+				<div class="flex-box align-bottom">
+					<h6 id="detail-title">{{ product.name }}</h6>
+					<span v-if="!product.sales" id="sales" class="red">out of stock</span>
+				</div>
 				<span id="detail-price"
 					>{{ product.price ? product.price.toLocaleString() + ' 원' : '무료' }}
 				</span>
@@ -57,20 +60,27 @@
 								></i>
 							</div>
 							<div class="flex-box align-center space-between">
-								<div class="size-button-wrap flex-box">
-									<!-- 수량빼기 버튼 -->
-									<button @click="subtractCount(index)">
-										<i class="fa-solid fa-minus pointer"></i>
-									</button>
-									<span>{{ option.select }}</span>
-									<!-- 수량 더하기 버튼 -->
-									<button @click="addCount(index)" id="add-button">
-										<i class="fa-solid fa-plus pointer"></i>
-									</button>
-								</div>
-								<small>
-									{{ (product.price * option.select).toLocaleString() }} 원
-								</small>
+								<!-- 상품의 재고가 있을 경우  -->
+								<template v-if="option.count">
+									<div class="size-button-wrap flex-box">
+										<!-- 수량빼기 버튼 -->
+										<button @click="subtractCount(index)">
+											<i class="fa-solid fa-minus pointer"></i>
+										</button>
+										<span>{{ option.select }}</span>
+										<!-- 수량 더하기 버튼 -->
+										<button @click="addCount(index)" id="add-button">
+											<i class="fa-solid fa-plus pointer"></i>
+										</button>
+									</div>
+									<small>
+										{{ (product.price * option.select).toLocaleString() }} 원
+									</small>
+								</template>
+								<!-- 상품의 재고가 없을 경우 -->
+								<template v-else>
+									<h1>품절</h1>
+								</template>
 							</div>
 						</div>
 					</div>
@@ -87,7 +97,10 @@
 					</div>
 				</article>
 				<!-- 총 금액 -->
-				<div class="flex-box button-wrap">
+				<div v-if="!product.sales">
+					<button id="sales-button">품절된 상품입니다.</button>
+				</div>
+				<div v-else class="flex-box button-wrap">
 					<button>CART</button>
 					<button @click="payment">BUY</button>
 				</div>
@@ -153,9 +166,9 @@ const subtractSize = (size, index) => {
 	selectedSizes.value.splice(findIndex, 1);
 };
 // ------------------------------------------------------------------
+// ------------------------------------------------------------------
 // 제품구매
 const router = useRouter();
-
 const payment = () => {
 	if (!selectedSizes.value.length) alert('최소 주문수량은 1개 입니다.');
 	else {
@@ -175,6 +188,10 @@ const payment = () => {
 }
 .none {
 	display: none;
+}
+#sales {
+	display: block;
+	margin-left: 2rem;
 }
 #product-info {
 	width: 100%;
@@ -245,7 +262,14 @@ select {
 	background-color: #000;
 	font-weight: bold;
 }
-
+#sales-button {
+	width: 100%;
+	background-color: #ccc;
+	color: #fff;
+	border: none;
+	height: 5rem;
+	border-radius: 0.6rem;
+}
 .button-wrap button:first-child {
 	background-color: #fff;
 	color: #000;

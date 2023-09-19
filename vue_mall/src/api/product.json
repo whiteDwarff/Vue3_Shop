@@ -9,6 +9,7 @@
     "discount": 0,
     "delivery": 0,
     "mileage": 2,
+    "sales": true,
     "stock": [
       {
         "size": "[필수] 옵션을 선택해주세요."
@@ -45,6 +46,7 @@
     "discount": 0,
     "delivery": 0,
     "mileage": 2,
+    "sales": true,
     "stock": [
       {
         "size": "[필수] 옵션을 선택해주세요."
@@ -82,6 +84,7 @@
     "discount": 0,
     "delivery": 0,
     "mileage": 2,
+    "sales": true,
     "stock": [
       {
         "size": "[필수] 옵션을 선택해주세요."
@@ -118,6 +121,7 @@
     "discount": 0,
     "delivery": 0,
     "mileage": 2,
+    "sales": true,
     "stock": [
       {
         "size": "[필수] 옵션을 선택해주세요."
@@ -149,6 +153,7 @@
     "discount": 0,
     "delivery": 0,
     "mileage": 2,
+    "sales": true,
     "stock": [
       {
         "size": "[필수] 옵션을 선택해주세요."

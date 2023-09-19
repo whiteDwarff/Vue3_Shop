@@ -146,7 +146,7 @@ const totalTel = userStore.totalTel;
 const productStore = useProductStore();
 const { product } = storeToRefs(productStore);
 const { products } = storeToRefs(productStore);
-const labelImage = productStore.labelImage;
+// const labelImage = productStore.labelImage;
 // -----------------------------------------------------------
 const orderListStore = useOrderListStore();
 const { orderList } = storeToRefs(orderListStore);
@@ -217,7 +217,7 @@ const addCount = () => {
 			const obj = {
 				id: product.value.id,
 				name: product.value.name,
-				image: labelImage,
+				image: product.value.detailImage[0],
 				price: product.value.price,
 				size: el.size,
 				select: el.select,
@@ -241,15 +241,22 @@ const isDisplayOption = ref({
 // -----------------------------------------------------------
 // 결제 버튼 클릭 시 제품 수량 최신화
 const productsUpdate = () => {
+	let salesCount = 0;
 	products.value.forEach(el => {
 		if (el.name === product.value.name) {
-			count.value.forEach(({ size, select }, i) => {
-				if (size === el.stock[i].size) el.stock[i].count -= select;
+			el.stock.forEach((item, i) => {
+				if (typeof item.count === 'number' && item.count) {
+					item.count -= product.value.stock[i].select;
+					item.select = 0;
+					salesCount += item.count;
+				}
+				if (!salesCount) el.sales = false;
 			});
 		}
 	});
 };
 // -----------------------------------------------------------
+const router = useRouter();
 const buyNow = () => {
 	if (depositName.value === '') alert('입금자명을 입력해주세요.');
 	else {
@@ -287,10 +294,9 @@ const buyNow = () => {
 		// 상품 수량 최신화
 		productsUpdate();
 
-		// orderInfo.value = newOrderInfo.value;
-		orderList.value.push(newOrderInfo.value);
-
-		const router = useRouter();
+		orderList.value.unshift(newOrderInfo.value);
+		// product 초기화
+		// product.value = {};
 		router.push({
 			name: 'orderHistory',
 			params: { id: newOrderInfo.value.id },
