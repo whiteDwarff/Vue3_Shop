@@ -27,7 +27,7 @@
 					<select v-model="size" @change="selectSize">
 						<!-- v-for와 if문의 중첩은 배제하는게 좋다. -->
 						<template v-for="{ size } in product.stock" :key="size">
-							<option v-if="typeof size === 'string'" selected>
+							<option v-if="typeof size === 'string'">
 								{{ size }}
 							</option>
 							<option v-else-if="typeof size === 'number'">
@@ -48,6 +48,8 @@
 									!selectedSizes.includes('FREE'),
 							}"
 						>
+							<!-- none: !selectedSizes.includes(option.size + ' SIZE'), -->
+							<!-- && !selectedSizes.includes('FREE'), -->
 							<div class="flex-box align-center space-between">
 								<h6 class="option-title">
 									{{ product.name }} ({{ option.size }})
@@ -61,7 +63,7 @@
 							</div>
 							<div class="flex-box align-center space-between">
 								<!-- 상품의 재고가 있을 경우  -->
-								<template v-if="option.count">
+								<template v-if="option.sales">
 									<div class="size-button-wrap flex-box">
 										<!-- 수량빼기 버튼 -->
 										<button @click="subtractCount(index)">
@@ -79,7 +81,7 @@
 								</template>
 								<!-- 상품의 재고가 없을 경우 -->
 								<template v-else>
-									<h1>품절</h1>
+									<span>품절</span>
 								</template>
 							</div>
 						</div>
@@ -98,7 +100,7 @@
 				</article>
 				<!-- 총 금액 -->
 				<div v-if="!product.sales">
-					<button id="sales-button">품절된 상품입니다.</button>
+					<button id="sales-button" class="pointer">품절된 상품입니다.</button>
 				</div>
 				<div v-else class="flex-box button-wrap">
 					<button>CART</button>
@@ -128,7 +130,6 @@ import ToggleImage from '@/components/product/ToggleImage.vue';
 const result = ref(0);
 const route = useRoute();
 const size = ref('[필수] 옵션을 선택해주세요.');
-const option = ref({ size: 'none' });
 const selectedSizes = ref([]);
 
 const store = useProductStore();
@@ -150,7 +151,6 @@ const subtractCount = index => {
 // ------------------------------------------------------------------
 // 제품 사이즈 선택
 const selectSize = newSize => {
-	option.value.size = newSize.target.value;
 	if (!selectedSizes.value.includes(newSize.target.value))
 		selectedSizes.value.push(newSize.target.value);
 };
@@ -165,7 +165,6 @@ const subtractSize = (size, index) => {
 	const findIndex = selectedSizes.value.indexOf(size);
 	selectedSizes.value.splice(findIndex, 1);
 };
-// ------------------------------------------------------------------
 // ------------------------------------------------------------------
 // 제품구매
 const router = useRouter();

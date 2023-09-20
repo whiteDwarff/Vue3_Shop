@@ -239,7 +239,7 @@ const isDisplayOption = ref({
 	credit: true,
 });
 // -----------------------------------------------------------
-// 결제 버튼 클릭 시 제품 수량 최신화
+// 결제 버튼 클릭 시 제품 정보 최신화
 const productsUpdate = () => {
 	let salesCount = 0;
 	products.value.forEach(el => {
@@ -249,9 +249,10 @@ const productsUpdate = () => {
 					item.count -= product.value.stock[i].select;
 					item.select = 0;
 					salesCount += item.count;
+					if (!item.count) item.sales = false;
 				}
-				if (!salesCount) el.sales = false;
 			});
+			if (!salesCount) el.sales = false;
 		}
 	});
 };

@@ -7,6 +7,7 @@
 				:title="item.name"
 				:price="item.price"
 				:image="item.detailImage[0]"
+				:sales="item.sales"
 				@click="moveDetailPage(item.id)"
 				class="grid-item"
 			/>

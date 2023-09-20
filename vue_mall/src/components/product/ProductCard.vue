@@ -6,6 +6,7 @@
 		<article>
 			<span class="card-title">{{ title }}</span>
 			<span class="card-price">{{ price.toLocaleString() }}원</span>
+			<span v-if="!sales" class="red">out of stock</span>
 		</article>
 	</div>
 </template>
@@ -22,6 +23,10 @@ defineProps({
 	},
 	image: {
 		type: String,
+		required: true,
+	},
+	sales: {
+		type: Boolean,
 		required: true,
 	},
 });
