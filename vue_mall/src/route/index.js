@@ -53,6 +53,11 @@ const routes = [
 		name: 'orderList',
 		component: () => import('@/views/order/OrderList.vue'),
 	},
+	{
+		path: '/wishList',
+		name: 'wishList',
+		component: () => import('@/views/product/WishList.vue'),
+	},
 ];
 
 const router = createRouter({

@@ -161,13 +161,12 @@ const subtractCount = index => {
 const selectSize = newSize => {
 	if (!selectedSizes.value.includes(newSize.target.value))
 		selectedSizes.value.push(newSize.target.value);
-	console.log(selectedSizes.value, newSize.target.value);
 };
 // ------------------------------------------------------------------
 // x 버튼 누르면 selectedSizes의 배열에서 선택한 사이즈 제거
 const subtractSize = (size, index) => {
 	// 현재 선택한 수량
-	let currentSelect = product.value.stock[index].select;
+	const currentSelect = product.value.stock[index].select;
 	// x를 누르면 선택한 수량 초기화 및 result에서 선택한 수량만큼 빼기
 	product.value.stock[index].select = 0;
 	result.value -= currentSelect;
@@ -179,8 +178,7 @@ const subtractSize = (size, index) => {
 const router = useRouter();
 const add = (routerName, message, wishList = '') => {
 	if (wishList) {
-		// alert(1234);
-		return wishList;
+		wishList();
 	} else {
 		return !result.value ? alert(message) : router.push({ name: routerName });
 	}
@@ -193,10 +191,13 @@ const wishList = () => {
 		image: product.value.detailImage[0],
 		price: product.value.price,
 	};
-	if (result.value) {
+	const basket = [];
+	wish.value.forEach(item => basket.push(item.id));
+	if (basket.includes(obj.id)) alert('이미 등록된 상품입니다.');
+	else {
 		wish.value.unshift(obj);
 		if (confirm('위시리스트로 이동할까요?'))
-			return router.push({ name: 'orderList' });
+			return router.push({ name: 'wishList' });
 	}
 };
 // ------------------------------------------------------------------
