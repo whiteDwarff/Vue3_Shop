@@ -25,39 +25,38 @@
 				<div class="flex-box">
 					<span class="margin-right">OPTION</span>
 					<select v-model="size" @change="selectSize">
+						<option value="- [필수] 옵션을 선택해주세요 -" selected>
+							- [필수] 옵션을 선택해주세요 -
+						</option>
+						<option disabled>--------------------------</option>
 						<!-- v-for와 if문의 중첩은 배제하는게 좋다. -->
-						<template v-for="{ size } in product.stock" :key="size">
-							<option v-if="typeof size === 'string'">
-								{{ size }}
-							</option>
-							<option v-else-if="typeof size === 'number'">
-								{{ size }} SIZE
-							</option>
-						</template>
+						<optgroup label="Size">
+							<template v-for="item in product.stock" :key="item">
+								<option v-if="item.sales" :value="item.size">
+									{{ item.size }}
+								</option>
+								<option v-else :value="item.size">
+									{{ item.size }} [품절]
+								</option>
+							</template>
+						</optgroup>
 					</select>
 				</div>
 				<!-- 옵션 box -->
 				<div class="select-count-box">
 					<div v-for="(option, index) in product.stock" :key="index">
 						<div
-							v-if="typeof option.size === 'number' || option.size == 'FREE'"
 							class="thum"
 							:class="{
-								none:
-									!selectedSizes.includes(option.size + ' SIZE') &&
-									!selectedSizes.includes('FREE'),
+								none: !selectedSizes.includes(option.size),
 							}"
 						>
-							<!-- none: !selectedSizes.includes(option.size + ' SIZE'), -->
-							<!-- && !selectedSizes.includes('FREE'), -->
 							<div class="flex-box align-center space-between">
 								<h6 class="option-title">
 									{{ product.name }} ({{ option.size }})
 								</h6>
 								<i
-									@click="
-										subtractSize(option.size + ' SIZE' || option.size, index)
-									"
+									@click="subtractSize(option.size, index)"
 									class="fa-solid fa-xmark delete-button"
 								></i>
 							</div>
@@ -103,7 +102,7 @@
 					<button id="sales-button" class="pointer">품절된 상품입니다.</button>
 				</div>
 				<div v-else class="flex-box button-wrap">
-					<button>CART</button>
+					<button @click="addWish">WISH</button>
 					<button @click="payment">BUY</button>
 				</div>
 			</article>
@@ -122,6 +121,8 @@
 
 <script setup>
 import { useProductStore } from '@/store/product';
+import { useUserInfoStore } from '@/store/user';
+import { useWishStore } from '@/store/wish';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
@@ -129,12 +130,19 @@ import ToggleImage from '@/components/product/ToggleImage.vue';
 // const product = ref({});
 const result = ref(0);
 const route = useRoute();
-const size = ref('[필수] 옵션을 선택해주세요.');
+const size = ref('- [필수] 옵션을 선택해주세요 -');
 const selectedSizes = ref([]);
 
-const store = useProductStore();
-store.fetchedItem(parseInt(route.params.id));
-const { product } = storeToRefs(store);
+// product store
+const productStore = useProductStore();
+productStore.fetchedItem(parseInt(route.params.id));
+const { product } = storeToRefs(productStore);
+// user store
+const userStore = useUserInfoStore();
+const { loginUser } = storeToRefs(userStore);
+// wish store
+const wishStore = useWishStore();
+const { wish } = storeToRefs(wishStore);
 // ------------------------------------------------------------------
 // 제품 수량 증가
 const addCount = index => {
@@ -153,6 +161,7 @@ const subtractCount = index => {
 const selectSize = newSize => {
 	if (!selectedSizes.value.includes(newSize.target.value))
 		selectedSizes.value.push(newSize.target.value);
+	console.log(selectedSizes.value, newSize.target.value);
 };
 // ------------------------------------------------------------------
 // x 버튼 누르면 selectedSizes의 배열에서 선택한 사이즈 제거
@@ -166,18 +175,42 @@ const subtractSize = (size, index) => {
 	selectedSizes.value.splice(findIndex, 1);
 };
 // ------------------------------------------------------------------
-// 제품구매
+// cart 및 buy 버튼 클릭 시 이벤트 제어
 const router = useRouter();
-const payment = () => {
-	if (!selectedSizes.value.length) alert('최소 주문수량은 1개 입니다.');
-	else {
-		router.push({
-			name: 'payment',
-		});
+const add = (routerName, message, wishList = '') => {
+	if (wishList) {
+		// alert(1234);
+		return wishList;
+	} else {
+		return !result.value ? alert(message) : router.push({ name: routerName });
 	}
 };
-
-// fetchedItem();
+// ------------------------------------------------------------------
+const wishList = () => {
+	const obj = {
+		id: product.value.id,
+		name: product.value.name,
+		image: product.value.detailImage[0],
+		price: product.value.price,
+	};
+	if (result.value) {
+		wish.value.unshift(obj);
+		if (confirm('위시리스트로 이동할까요?'))
+			return router.push({ name: 'orderList' });
+	}
+};
+// ------------------------------------------------------------------
+// 제품구매
+const payment = () => {
+	return loginUser.value.id == ''
+		? router.push({ name: 'login' })
+		: add('payment', '최소 주문수량은 1개 입니다.');
+};
+const addWish = () => {
+	return loginUser.value.id == ''
+		? router.push({ name: 'login' })
+		: add('products', '', wishList);
+};
 </script>
 
 <style scoped>

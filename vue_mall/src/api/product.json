@@ -12,16 +12,13 @@
     "sales": true,
     "stock": [
       {
-        "size": "[필수] 옵션을 선택해주세요."
-      },
-      {
-        "size": 1,
+        "size": "1",
         "count": 10,
         "select": 0,
         "sales": true
       },
       {
-        "size": 2,
+        "size": "2",
         "count": 8,
         "select": 0,
         "sales": true
@@ -51,16 +48,13 @@
     "sales": true,
     "stock": [
       {
-        "size": "[필수] 옵션을 선택해주세요."
-      },
-      {
-        "size": 1,
+        "size": "1",
         "count": 3,
         "select": 0,
         "sales": true
       },
       {
-        "size": 2,
+        "size": "2",
         "count": 6,
         "select": 0,
         "sales": true
@@ -91,16 +85,13 @@
     "sales": true,
     "stock": [
       {
-        "size": "[필수] 옵션을 선택해주세요."
-      },
-      {
-        "size": 1,
+        "size": "1",
         "count": 5,
         "select": 0,
         "sales": true
       },
       {
-        "size": 2,
+        "size": "2",
         "count": 10,
         "select": 0,
         "sales": true
@@ -129,9 +120,6 @@
     "mileage": 2,
     "sales": false,
     "stock": [
-      {
-        "size": "[필수] 옵션을 선택해주세요."
-      },
       {
         "size": "FREE",
         "count": 0,
@@ -162,9 +150,6 @@
     "mileage": 2,
     "sales": true,
     "stock": [
-      {
-        "size": "[필수] 옵션을 선택해주세요."
-      },
       {
         "size": "FREE",
         "count": 4,

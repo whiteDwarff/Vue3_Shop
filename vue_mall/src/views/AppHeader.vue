@@ -10,7 +10,7 @@
 			</ul>
 			<ul v-else>
 				<a :class="fontColor">MYPAGE</a>
-				<a :class="fontColor">LOGOUT</a>
+				<a :class="fontColor">LOG OUT</a>
 			</ul>
 		</nav>
 	</header>

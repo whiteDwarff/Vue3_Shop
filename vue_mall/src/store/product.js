@@ -5,11 +5,7 @@ export const useProductStore = defineStore('product', {
 		products: [],
 		product: {},
 	}),
-	getters: {
-		// labelImage(state) {
-		// 	return state.product.detailImage[0];
-		// },
-	},
+
 	actions: {
 		// 상품 리스트 조회
 		async fetchedProduct() {
@@ -21,7 +17,6 @@ export const useProductStore = defineStore('product', {
 			}
 		},
 		// ------------------------------------------------------------------
-		// 하나의 상품 조회
 		// async fetchedItem(id) {
 		// 	try {
 		// 		const data = await getPostById(id);
@@ -31,9 +26,18 @@ export const useProductStore = defineStore('product', {
 		// 	}
 		// },
 		// ------------------------------------------------------------------
+		// 하나의 상품 조회
 		fetchedItem(id) {
 			this.products.forEach(item => {
 				if (item.id == id) this.product = item;
+			});
+		},
+		// 선택한 사이즈 갱신
+		replaceItemSelect() {
+			this.products.forEach(item => {
+				item.stock.forEach(el => {
+					if (el.select) el.select = 0;
+				});
 			});
 		},
 	},

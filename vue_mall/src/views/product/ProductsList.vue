@@ -27,6 +27,7 @@ const router = useRouter();
 
 // store.fetchedProduct();
 const { products } = storeToRefs(store);
+store.replaceItemSelect();
 // 상세페이지로 이동
 const moveDetailPage = id => {
 	router.push({
