@@ -6,7 +6,7 @@
 			<li class="order-state font">주문상태</li>
 		</ul>
 		<div v-for="(list, i) in orderList" :key="i">
-			<template v-if="list.productInfo.length > 1">
+			<template v-if="list.productInfo.length">
 				<ProductLabel
 					:item="list.productInfo[i]"
 					:ohter="`외 ${list.productInfo.length - 1}건`"
@@ -85,7 +85,6 @@ const moveOrderHistory = id => {
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 }
-
 .wrap {
 	width: 60%;
 }
@@ -93,11 +92,7 @@ const moveOrderHistory = id => {
 	width: 80%;
 	margin: auto 0;
 }
-.order-date {
-	width: 20%;
-	text-align: center;
-	margin: auto 0;
-}
+
 .order-date span:last-child {
 	display: block;
 	margin-top: 1rem;
@@ -105,11 +100,5 @@ const moveOrderHistory = id => {
 .order-date span:last-child:hover {
 	text-decoration: underline;
 	text-underline-position: under;
-}
-.order-state {
-	width: 10%;
-	/* margin-top: 2rem; */
-	margin: auto 0;
-	/* background-color: #f0f; */
 }
 </style>

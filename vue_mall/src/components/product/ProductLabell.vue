@@ -12,11 +12,10 @@
 				<span class="font bold">{{ item.name }}</span>
 				<span v-if="ohter" id="ohter" class="bold">{{ ohter }}</span>
 			</div>
-			<span v-if="typeof item.size === 'number'" class="font grey"
-				>[옵션 : {{ item.size }} SIZE]</span
+			<span v-if="item.size" class="font grey">[옵션 : {{ item.size }}]</span>
+			<span v-if="item.select" class="font count grey"
+				>수량: {{ item.select }}개</span
 			>
-			<span v-else class="font grey">[옵션 : {{ item.size }}]</span>
-			<span class="font count grey">수량: {{ item.select }}개</span>
 			<span class="font">{{ item.price.toLocaleString() }}원</span>
 		</div>
 

@@ -127,6 +127,7 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import ToggleImage from '@/components/product/ToggleImage.vue';
+import currentDate from '@/utils/date';
 // const product = ref({});
 const result = ref(0);
 const route = useRoute();
@@ -142,7 +143,7 @@ const userStore = useUserInfoStore();
 const { loginUser } = storeToRefs(userStore);
 // wish store
 const wishStore = useWishStore();
-const { wish } = storeToRefs(wishStore);
+const { wishList } = storeToRefs(wishStore);
 // ------------------------------------------------------------------
 // 제품 수량 증가
 const addCount = index => {
@@ -176,26 +177,28 @@ const subtractSize = (size, index) => {
 // ------------------------------------------------------------------
 // cart 및 buy 버튼 클릭 시 이벤트 제어
 const router = useRouter();
-const add = (routerName, message, wishList = '') => {
-	if (wishList) {
-		wishList();
+const add = (routerName, message, addWishList = '') => {
+	if (addWishList) {
+		addWishList();
 	} else {
 		return !result.value ? alert(message) : router.push({ name: routerName });
 	}
 };
 // ------------------------------------------------------------------
-const wishList = () => {
+const addWishList = () => {
 	const obj = {
-		id: product.value.id,
+		id: wishList.value.length,
+		productId: product.value.id,
 		name: product.value.name,
 		image: product.value.detailImage[0],
 		price: product.value.price,
+		date: currentDate,
 	};
 	const basket = [];
-	wish.value.forEach(item => basket.push(item.id));
-	if (basket.includes(obj.id)) alert('이미 등록된 상품입니다.');
+	wishList.value.forEach(item => basket.push(item.id));
+	if (basket.includes(obj.productId)) alert('이미 등록된 상품입니다.');
 	else {
-		wish.value.unshift(obj);
+		wishList.value.unshift(obj);
 		if (confirm('위시리스트로 이동할까요?'))
 			return router.push({ name: 'wishList' });
 	}
@@ -210,7 +213,7 @@ const payment = () => {
 const addWish = () => {
 	return loginUser.value.id == ''
 		? router.push({ name: 'login' })
-		: add('products', '', wishList);
+		: add('products', '', addWishList);
 };
 </script>
 
