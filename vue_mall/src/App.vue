@@ -123,4 +123,13 @@ label {
 .grey {
 	color: rgb(88, 88, 88);
 }
+.order-date {
+	width: 20%;
+	text-align: center;
+	margin: auto 0;
+}
+.order-state {
+	width: 10%;
+	margin: auto 0;
+}
 </style>
