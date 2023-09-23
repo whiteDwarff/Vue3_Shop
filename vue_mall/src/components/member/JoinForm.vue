@@ -1,5 +1,5 @@
 <template>
-	<section class="form-wrap">
+	<section class="wrap">
 		<h4 class="form-title">CREATE ACCOUNT</h4>
 		<form @submit.prevent="createAccount">
 			<div class="border-bottom">

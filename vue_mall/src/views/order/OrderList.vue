@@ -1,15 +1,15 @@
 <template>
 	<div class="wrap">
-		<ul id="table-header" class="flex-box">
-			<li class="order-date font">주문일자</li>
-			<li class="info-box font">주문정보</li>
-			<li class="order-state font">주문상태</li>
+		<ul id="table-header" class="flex-box font-label">
+			<li class="order-date">주문일자</li>
+			<li class="info-box">주문정보</li>
+			<li class="order-state">주문상태</li>
 		</ul>
 		<div v-for="(list, i) in orderList" :key="i">
 			<template v-if="list.productInfo.length">
 				<ProductLabel
 					:item="list.productInfo[i]"
-					:ohter="`외 ${list.productInfo.length - 1}건`"
+					:ohter="list.productInfo.length - 1"
 					class="border-grey"
 				>
 					<!-- slot header -->

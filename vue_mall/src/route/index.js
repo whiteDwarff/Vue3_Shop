@@ -58,6 +58,11 @@ const routes = [
 		name: 'wishList',
 		component: () => import('@/views/product/WishList.vue'),
 	},
+	{
+		path: '/myshop',
+		name: 'myshop',
+		component: () => import('@/views/member/MyShop.vue'),
+	},
 ];
 
 const router = createRouter({

@@ -1,61 +1,116 @@
 <template>
 	<header>
-		<nav>
+		<nav class="flex-box center">
 			<h1>
-				<router-link to="/" :class="fontColor">FORCE SENSITIVE</router-link>
+				<router-link to="/" :class="updateHeaderColor"
+					>FORCE SENSITIVE</router-link
+				>
 			</h1>
-			<ul v-if="!loginUser.id">
-				<router-link to="/member/login" :class="fontColor">LOGIN</router-link>
-				<router-link to="/member/join" :class="fontColor">JOIN</router-link>
-			</ul>
-			<ul v-else>
-				<a :class="fontColor">MYPAGE</a>
-				<a :class="fontColor">LOG OUT</a>
+			<ul>
+				<!-- 로그인 상태가 아닌 경우 -->
+				<template v-if="!loginUser.id">
+					<router-link to="/member/login" :class="updateHeaderColor"
+						>LOGIN</router-link
+					>
+					<router-link to="/member/join" :class="updateHeaderColor"
+						>JOIN</router-link
+					>
+				</template>
+				<!-- 로그인 상태 -->
+				<template v-else>
+					<router-link to="/myshop" :class="updateHeaderColor"
+						>MY SHOP</router-link
+					>
+					<a @click="logout" :class="updateHeaderColor" class="pointer"
+						>LOG OUT</a
+					>
+				</template>
+				<router-link to="/wishList" :class="updateHeaderColor"
+					>WISH
+					<span v-if="wishList.length" id="wish-count">{{
+						wishList.length
+					}}</span></router-link
+				>
 			</ul>
 		</nav>
 	</header>
+	<!-- aside -->
 	<aside>
+		<!-- category -->
 		<article>
-			<p :class="fontColor" id="title">POWER FORCE SERVICE</p>
+			<p :class="updateColor" id="title">POWER FORCE SERVICE</p>
 			<ul>
-				<router-link to="/products" :class="fontColor">ALL</router-link>
-				<a :class="fontColor">OUTER</a>
-				<a :class="fontColor">TOP</a>
-				<a :class="fontColor">BOTTOM</a>
-				<a :class="fontColor">ACC</a>
+				<router-link to="/products" :class="updateColor">ALL</router-link>
+				<a :class="updateColor">OUTER</a>
+				<a :class="updateColor">TOP</a>
+				<a :class="updateColor">BOTTOM</a>
+				<a :class="updateColor">ACC</a>
 			</ul>
 		</article>
+		<!-- info -->
 		<article>
-			<a :class="fontColor">COMMUNITY</a>
-		</article>
-		<article>
-			<a :class="fontColor">CALL INFO</a>
-			<a :class="fontColor">BANK INFO</a>
+			<a
+				@click="isDisplayOption.call = !isDisplayOption.call"
+				:class="updateColor"
+				class="pointer"
+				>CALL INFO</a
+			>
+			<div class="info-guide" v-if="isDisplayOption.call">
+				<span class="bold font grey">010-8637-1685</span>
+				<span class="grey">WEEKLY 13:00 ~ 18:00</span>
+				<span class="grey">WEEKEND/HOLIDAY OFF</span>
+			</div>
+			<a
+				@click="isDisplayOption.bank = !isDisplayOption.bank"
+				:class="updateColor"
+				class="pointer"
+				>BANK INFO</a
+			>
+			<div class="info-guide" v-if="isDisplayOption.bank">
+				<span class="bold font grey">하나 287-910365-17807</span>
+				<span class="grey">예금주 : 강문호</span>
+			</div>
 		</article>
 	</aside>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { useUserInfoStore } from '@/store/user';
+import { useWishStore } from '@/store/wish';
 import { storeToRefs } from 'pinia';
+
+const userStore = useUserInfoStore();
+const { loginUser } = storeToRefs(userStore);
+const wishStore = useWishStore();
+const { wishList } = storeToRefs(wishStore);
+
+const router = useRouter();
 const route = useRoute();
-const fontColor = ref('colorWhite');
 
-const store = useUserInfoStore();
-const { loginUser } = storeToRefs(store);
+const isDisplayOption = ref({
+	call: false,
+	bank: false,
+});
 
-watch(
-	() => route.fullPath,
-	newPath => {
-		updateFontColor(newPath);
-	},
-);
-
-const updateFontColor = newPath => {
-	fontColor.value = newPath === '/' ? 'colorWhite' : '';
+const logout = () => {
+	if (confirm('로그아웃 하시겠습니까?')) {
+		loginUser.value = {
+			id: '',
+			password: '',
+			session: false,
+		};
+		router.push({ name: 'login' });
+	}
 };
+
+const updateColor = computed(() => {
+	return route.fullPath == '/' ? 'colorWhite' : 'color-ccc';
+});
+const updateHeaderColor = computed(() => {
+	return route.fullPath == '/' ? 'colorWhite' : 'colorBlack';
+});
 </script>
 
 <style scoped>
@@ -73,9 +128,14 @@ nav {
 	padding: 0 3rem;
 	background: none;
 }
-header a,
+nav a {
+	font-size: 1.3rem;
+}
 aside a {
 	font-size: 1.3rem;
+	font-weight: bold;
+	transition: 0.5s ease-in;
+	cursor: pointer;
 }
 h1 a {
 	font-size: 3rem;
@@ -83,6 +143,16 @@ h1 a {
 }
 nav ul > a {
 	margin-left: 2rem;
+}
+#wish-count {
+	width: 1.5rem;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+	border-radius: 7px;
+	display: inline-block;
+	background-color: #000;
+	color: #fff;
 }
 aside {
 	position: fixed;
@@ -110,5 +180,24 @@ aside article a {
 .colorWhite:hover {
 	color: #fff;
 	transition: 0.7s ease-out;
+}
+.color-ccc {
+	color: #ccc;
+	transition: 0.2s ease-out;
+}
+.color-ccc:hover {
+	color: rgb(88, 88, 88);
+	transition: 0.7s ease-out;
+}
+.colorBlack {
+	color: rgb(88, 88, 88);
+	transition: 0.7s ease-out;
+}
+span {
+	display: block;
+	margin-bottom: 0.5rem;
+}
+.info-guide {
+	margin: 1rem 0 3rem 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<section class="form-wrap">
+	<section class="wrap">
 		<h4 class="form-title">LOGIN</h4>
 		<form @submit.prevent="login">
 			<div class="border-bottom">
@@ -121,5 +121,8 @@ label {
 }
 #find-member-info {
 	margin-top: 8rem;
+}
+.font-grey {
+	color: #838383;
 }
 </style>

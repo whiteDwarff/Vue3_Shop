@@ -7,13 +7,17 @@
 			@click="moveDetailPage(item.id)"
 			class="pointer"
 		/>
-		<div class="info-box">
+		<div class="info-box font">
 			<div class="flex-box align-bottom">
-				<span class="font bold">{{ item.name }}</span>
-				<span v-if="ohter" id="ohter" class="bold">{{ ohter }}</span>
+				<span class="bold">{{ item.name }}</span>
+				<span v-if="ohter" id="ohter" class="bold font-label grey">
+					외 {{ ohter }}건
+				</span>
 			</div>
-			<span v-if="item.size" class="font grey">[옵션 : {{ item.size }}]</span>
-			<span v-if="item.select" class="font count grey"
+			<span v-if="item.size" class="grey font-label"
+				>[옵션 : {{ item.size }}]</span
+			>
+			<span v-if="item.select" class="count grey font-label"
 				>수량: {{ item.select }}개</span
 			>
 			<span class="font">{{ item.price.toLocaleString() }}원</span>
@@ -60,7 +64,7 @@ img {
 	margin: 0;
 }
 .count {
-	margin-top: -1rem;
+	margin-top: -0.5rem;
 }
 span {
 	display: block;

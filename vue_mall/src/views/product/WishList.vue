@@ -1,9 +1,9 @@
 <template>
 	<section class="wrap">
+		<h3 class="sub-title font bold">WISH LIST</h3>
 		<ul id="table-header" class="flex-box">
-			<li class="order-date font">주문일자</li>
-			<li class="info-box font">주문정보</li>
-			<li class="order-state font">주문상태</li>
+			<li class="info-box font-label">상품정보</li>
+			<li class="order-state font-label">등록일자</li>
 		</ul>
 		<template v-if="wishList.length">
 			<div v-for="(item, i) in wishList" :key="item.id">
@@ -14,7 +14,7 @@
 								@click="addSelectItem(item.id)"
 								:value="item.id"
 								type="checkbox"
-								class="checkbox"
+								class="checkbox pointer"
 							/>
 						</div>
 					</template>
@@ -28,13 +28,15 @@
 					</template>
 				</ProductLabel>
 			</div>
-			<div>
-				<button @click="deleteSelectItem">선택삭제</button>
-				<button @click="deleteAllItem">모두삭제</button>
+			<div id="button-wrap">
+				<button @click="deleteSelectItem" class="pointer">선택삭제</button>
+				<button @click="deleteAllItem" class="pointer">모두삭제</button>
 			</div>
 		</template>
 		<template v-else>
-			<div>등록된 상품이 없습니다.</div>
+			<div id="none-wish" class="font-label">
+				<span>관심 상품이 없습니다.</span>
+			</div>
 		</template>
 	</section>
 </template>
@@ -86,19 +88,50 @@ const deleteAllItem = () => {
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 }
-.order-state {
-	width: 50%;
+
+#table-header .info-box {
+	margin-left: 4rem;
+	width: 100%;
 }
 .checkbox {
-	display: block;
 	width: 1.7rem;
 	height: 1.7rem;
 }
+.order-state {
+	width: 50%;
+}
 .delete-button {
-	padding: 0.7rem 1rem;
+	padding: 0.3rem 0.3rem;
 	border: none;
 	border-radius: 5px;
-	background-color: #000;
+	background-color: #333;
 	color: #fff;
+	font-weight: 200;
+}
+#button-wrap {
+	width: 30%;
+	margin: 5rem 0 0 auto;
+}
+#button-wrap button {
+	width: 45%;
+	height: 5rem;
+	border-radius: 0.6rem;
+	border: none;
+	color: #fff;
+	background-color: #000;
+	font-weight: bold;
+}
+#button-wrap button:first-child {
+	background-color: #fff;
+	color: #000;
+	border: 1px solid #000;
+	margin-right: 10%;
+}
+#none-wish {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
 }
 </style>

@@ -11,7 +11,7 @@ export const useProductStore = defineStore('product', {
 		async fetchedProduct() {
 			const { data } = await getProductList();
 			try {
-				this.products = data;
+				this.products = data.reverse();
 			} catch (err) {
 				console.log(err.message);
 			}

@@ -52,7 +52,7 @@
 							}"
 						>
 							<div class="flex-box align-center space-between">
-								<h6 class="option-title">
+								<h6 class="option-title font-label">
 									{{ product.name }} ({{ option.size }})
 								</h6>
 								<i
@@ -89,11 +89,11 @@
 				<!-- 사이즈별 옵션 선택란  -->
 				<article id="total-price">
 					<div class="flex-box space-between align">
-						<h4 class="option-title">주문 수량</h4>
+						<h4 class="option-title font-label">주문 수량</h4>
 						<span> {{ result }} 개 </span>
 					</div>
 					<div class="flex-box space-between align">
-						<h4 class="option-title">총 상품 금액</h4>
+						<h4 class="option-title font-label">총 상품 금액</h4>
 						<span> {{ (result * product.price).toLocaleString() }} 원 </span>
 					</div>
 				</article>
@@ -102,8 +102,8 @@
 					<button id="sales-button" class="pointer">품절된 상품입니다.</button>
 				</div>
 				<div v-else class="flex-box button-wrap">
-					<button @click="addWish">WISH</button>
-					<button @click="payment">BUY</button>
+					<button @click="addWish" class="pointer">WISH</button>
+					<button @click="payment" class="pointer">BUY</button>
 				</div>
 			</article>
 		</section>
@@ -187,8 +187,7 @@ const add = (routerName, message, addWishList = '') => {
 // ------------------------------------------------------------------
 const addWishList = () => {
 	const obj = {
-		id: wishList.value.length,
-		productId: product.value.id,
+		id: product.value.id,
 		name: product.value.name,
 		image: product.value.detailImage[0],
 		price: product.value.price,
@@ -196,7 +195,7 @@ const addWishList = () => {
 	};
 	const basket = [];
 	wishList.value.forEach(item => basket.push(item.id));
-	if (basket.includes(obj.productId)) alert('이미 등록된 상품입니다.');
+	if (basket.includes(obj.id)) alert('이미 등록된 상품입니다.');
 	else {
 		wishList.value.unshift(obj);
 		if (confirm('위시리스트로 이동할까요?'))
@@ -210,11 +209,7 @@ const payment = () => {
 		? router.push({ name: 'login' })
 		: add('payment', '최소 주문수량은 1개 입니다.');
 };
-const addWish = () => {
-	return loginUser.value.id == ''
-		? router.push({ name: 'login' })
-		: add('products', '', addWishList);
-};
+const addWish = () => add('products', '', addWishList);
 </script>
 
 <style scoped>
@@ -277,7 +272,6 @@ select {
 	padding: 3rem 0;
 }
 .option-title {
-	font-size: 1.2rem;
 	font-weight: 600;
 	margin-bottom: 1rem;
 }
@@ -293,7 +287,6 @@ select {
 	height: 5rem;
 	border-radius: 0.6rem;
 	border: none;
-	cursor: pointer;
 	color: #fff;
 	background-color: #000;
 	font-weight: bold;

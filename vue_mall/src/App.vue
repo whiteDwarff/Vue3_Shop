@@ -33,10 +33,7 @@ a {
 }
 .form-wrap {
 	width: 50%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	margin: 22rem auto 0 auto;
 }
 .wrap {
 	width: 50%;
@@ -111,6 +108,9 @@ label {
 .pointer {
 	cursor: pointer;
 }
+.font-label {
+	font-size: 1.2rem;
+}
 .font {
 	font-size: 1.5rem;
 }
@@ -123,6 +123,9 @@ label {
 .grey {
 	color: rgb(88, 88, 88);
 }
+.ccc {
+	color: #ccc;
+}
 .order-date {
 	width: 20%;
 	text-align: center;
@@ -131,5 +134,8 @@ label {
 .order-state {
 	width: 10%;
 	margin: auto 0;
+}
+.sub-title {
+	margin-bottom: 2rem;
 }
 </style>

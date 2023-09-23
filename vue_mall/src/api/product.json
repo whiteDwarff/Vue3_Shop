@@ -169,5 +169,137 @@
       "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_05.jpg",
       "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_06.jpg"
     ]
+  },
+  {
+    "id" : 5,
+    "name": "FORCE SWEATSHIRT BLACK",
+    "discription": "",
+    "price": 139000,
+    "createAt": "2023-09-23",
+    "category": "top",
+    "discount": 0,
+    "delivery": 0,
+    "mileage": 2,
+    "sales": false,
+    "stock": [
+      {
+        "size": "FREE",
+        "count": 0,
+        "select": 0,
+        "sales": false
+      }
+    ],
+    "detailImage": [
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_DETAIL_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_DETAIL_02.jpeg"
+    ],
+    "image": [
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_02.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_03.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_04.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_05.jpeg"
+    ]
+  },
+  {
+    "id" : 6,
+    "name": "FORCE SWEATSHIRT BEIGE",
+    "discription": "",
+    "price": 139000,
+    "createAt": "2023-09-23",
+    "category": "top",
+    "discount": 0,
+    "delivery": 0,
+    "mileage": 2,
+    "sales": true,
+    "stock": [
+      {
+        "size": "FREE",
+        "count": 2,
+        "select": 0,
+        "sales": true
+      }
+    ],
+    "detailImage": [
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_DETAIL_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_DETAIL_02.jpeg"
+    ],
+    "image": [
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_02.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_03.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_04.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_05.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_06.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_07.jpeg"
+    ]
+  },
+  {
+    "id" : 7,
+    "name": "FS WHALE KEYRING",
+    "discription": "",
+    "price": 39000,
+    "createAt": "2023-09-24",
+    "category": "acc",
+    "discount": 0,
+    "delivery": 0,
+    "mileage": 2,
+    "sales": false,
+    "stock": [
+      {
+        "size": "FREE",
+        "count": 0,
+        "select": 0,
+        "sales": false
+      }
+    ],
+    "detailImage": [
+      "/src/assets/product/FS_WHALE_KEYRING_DETAIL_01.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_DETAIL_02.jpeg"
+    ],
+    "image": [
+      "/src/assets/product/FS_WHALE_KEYRING_01.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_02.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_03.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_04.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_05.jpeg"
+    ]
+  },
+  {
+    "id" : 8,
+    "name": "FORCE TRACK PANTS",
+    "discription": "",
+    "price": 149000,
+    "createAt": "2023-09-24",
+    "category": "acc",
+    "discount": 0,
+    "delivery": 0,
+    "mileage": 2,
+    "sales": true,
+    "stock": [
+      {
+        "size": "1",
+        "count": 10,
+        "select": 0,
+        "sales": true
+      },
+      {
+        "size": "2",
+        "count": 0,
+        "select": 0,
+        "sales": false
+      }
+    ],
+    "detailImage": [
+      "/src/assets/product/FORCE_TRACK_PANTS_DETAIL_01.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_DETAIL_02.jpeg"
+    ],
+    "image": [
+      "/src/assets/product/FORCE_TRACK_PANTS_01.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_02.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_03.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_04.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_04.jpeg"
+    ]
   }
 ]
