@@ -25,14 +25,14 @@
       }
     ],
     "detailImage": [
-      "/product/RED_DRAGON_HOODIE_DETAIL_01.jpg",
-      "/product/RED_DRAGON_HOODIE_DETAIL_02.jpg"
+      "/src/assets/product/RED_DRAGON_HOODIE_DETAIL_01.jpg",
+      "/src/assets/product/RED_DRAGON_HOODIE_DETAIL_02.jpg"
     ],
     "image": [
-      "/product/RED_DRAGON_HOODIE_01.jpg",
-      "/product/RED_DRAGON_HOODIE_02.jpg",
-      "/product/RED_DRAGON_HOODIE_03.jpg",
-      "/product/RED_DRAGON_HOODIE_04.jpg"
+      "/src/assets/product/RED_DRAGON_HOODIE_01.jpg",
+      "/src/assets/product/RED_DRAGON_HOODIE_02.jpg",
+      "/src/assets/product/RED_DRAGON_HOODIE_03.jpg",
+      "/src/assets/product/RED_DRAGON_HOODIE_04.jpg"
     ]
   },
   {
@@ -61,15 +61,15 @@
       }
     ],
     "detailImage": [
-      "/product/PFS_SPORTS_JERSEY_DETAIL_01.jpg",
-      "/product/PFS_SPORTS_JERSEY_DETAIL_02.jpg"
+      "/src/assets/product/PFS_SPORTS_JERSEY_DETAIL_01.jpg",
+      "/src/assets/product/PFS_SPORTS_JERSEY_DETAIL_02.jpg"
     ],
     "image": [
-      "/product/PFS_SPORTS_JERSEY_01.jpg",
-      "/product/PFS_SPORTS_JERSEY_02.jpg",
-      "/product/PFS_SPORTS_JERSEY_03.jpg",
-      "/product/PFS_SPORTS_JERSEY_04.jpg",
-      "/product/PFS_SPORTS_JERSEY_05.jpg"
+      "/src/assets/product/PFS_SPORTS_JERSEY_01.jpg",
+      "/src/assets/product/PFS_SPORTS_JERSEY_02.jpg",
+      "/src/assets/product/PFS_SPORTS_JERSEY_03.jpg",
+      "/src/assets/product/PFS_SPORTS_JERSEY_04.jpg",
+      "/src/assets/product/PFS_SPORTS_JERSEY_05.jpg"
     ]
   },
   {
@@ -98,13 +98,13 @@
       }
     ],
     "detailImage": [
-      "/product/PFS_SPORTS_NYLON PANTS_DETAIL_01.jpg",
-      "/product/PFS_SPORTS_NYLON PANTS_DETAIL_02.jpg"
+      "/src/assets/product/PFS_SPORTS_NYLON PANTS_DETAIL_01.jpg",
+      "/src/assets/product/PFS_SPORTS_NYLON PANTS_DETAIL_02.jpg"
     ],
     "image": [
-      "/product/PFS_SPORTS_NYLON PANTS_01.jpg",
-      "/product/PFS_SPORTS_NYLON PANTS_02.jpg",
-      "/product/PFS_SPORTS_NYLON PANTS_03.jpg"
+      "/src/assets/product/PFS_SPORTS_NYLON PANTS_01.jpg",
+      "/src/assets/product/PFS_SPORTS_NYLON PANTS_02.jpg",
+      "/src/assets/product/PFS_SPORTS_NYLON PANTS_03.jpg"
   
     ]
   },
@@ -128,14 +128,14 @@
       }
     ],
     "detailImage": [
-      "/product/FORCE_SENSITIVE_HOODIE_GREY_DETAIL_01.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_GREY_DETAIL_02.jpg"
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_GREY_DETAIL_01.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_GREY_DETAIL_02.jpg"
     ],
     "image": [
-      "/product/FORCE_SENSITIVE_HOODIE_GREY_01.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_GREY_02.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_GREY_03.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_GREY_04.jpg"
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_GREY_01.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_GREY_02.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_GREY_03.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_GREY_04.jpg"
     ]
   },
   {
@@ -158,16 +158,16 @@
       }
     ],
     "detailImage": [
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_DETAIL_01.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_DETAIL_02.jpg"
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_DETAIL_01.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_DETAIL_02.jpg"
     ],
     "image": [
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_01.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_02.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_03.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_04.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_05.jpg",
-      "/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_06.jpg"
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_01.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_02.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_03.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_04.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_05.jpg",
+      "/src/assets/product/FORCE_SENSITIVE_HOODIE_WASHING_BLACK_06.jpg"
     ]
   },
   {
@@ -190,15 +190,15 @@
       }
     ],
     "detailImage": [
-      "/product/FORCE_SWEATSHIRT_BLACK_DETAIL_01.jpeg",
-      "/product/FORCE_SWEATSHIRT_BLACK_DETAIL_02.jpeg"
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_DETAIL_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_DETAIL_02.jpeg"
     ],
     "image": [
-      "/product/FORCE_SWEATSHIRT_BLACK_01.jpeg",
-      "/product/FORCE_SWEATSHIRT_BLACK_02.jpeg",
-      "/product/FORCE_SWEATSHIRT_BLACK_03.jpeg",
-      "/product/FORCE_SWEATSHIRT_BLACK_04.jpeg",
-      "/product/FORCE_SWEATSHIRT_BLACK_05.jpeg"
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_02.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_03.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_04.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BLACK_05.jpeg"
     ]
   },
   {
@@ -221,17 +221,17 @@
       }
     ],
     "detailImage": [
-      "/product/FORCE_SWEATSHIRT_BEIGE_DETAIL_01.jpeg",
-      "/product/FORCE_SWEATSHIRT_BEIGE_DETAIL_02.jpeg"
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_DETAIL_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_DETAIL_02.jpeg"
     ],
     "image": [
-      "/product/FORCE_SWEATSHIRT_BEIGE_01.jpeg",
-      "/product/FORCE_SWEATSHIRT_BEIGE_02.jpeg",
-      "/product/FORCE_SWEATSHIRT_BEIGE_03.jpeg",
-      "/product/FORCE_SWEATSHIRT_BEIGE_04.jpeg",
-      "/product/FORCE_SWEATSHIRT_BEIGE_05.jpeg",
-      "/product/FORCE_SWEATSHIRT_BEIGE_06.jpeg",
-      "/product/FORCE_SWEATSHIRT_BEIGE_07.jpeg"
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_01.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_02.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_03.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_04.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_05.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_06.jpeg",
+      "/src/assets/product/FORCE_SWEATSHIRT_BEIGE_07.jpeg"
     ]
   },
   {
@@ -254,15 +254,15 @@
       }
     ],
     "detailImage": [
-      "/product/FS_WHALE_KEYRING_DETAIL_01.jpeg",
-      "/product/FS_WHALE_KEYRING_DETAIL_02.jpeg"
+      "/src/assets/product/FS_WHALE_KEYRING_DETAIL_01.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_DETAIL_02.jpeg"
     ],
     "image": [
-      "/product/FS_WHALE_KEYRING_01.jpeg",
-      "/product/FS_WHALE_KEYRING_02.jpeg",
-      "/product/FS_WHALE_KEYRING_03.jpeg",
-      "/product/FS_WHALE_KEYRING_04.jpeg",
-      "/product/FS_WHALE_KEYRING_05.jpeg"
+      "/src/assets/product/FS_WHALE_KEYRING_01.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_02.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_03.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_04.jpeg",
+      "/src/assets/product/FS_WHALE_KEYRING_05.jpeg"
     ]
   },
   {
@@ -291,15 +291,15 @@
       }
     ],
     "detailImage": [
-      "/product/FORCE_TRACK_PANTS_DETAIL_01.jpeg",
-      "/product/FORCE_TRACK_PANTS_DETAIL_02.jpeg"
+      "/src/assets/product/FORCE_TRACK_PANTS_DETAIL_01.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_DETAIL_02.jpeg"
     ],
     "image": [
-      "/product/FORCE_TRACK_PANTS_01.jpeg",
-      "/product/FORCE_TRACK_PANTS_02.jpeg",
-      "/product/FORCE_TRACK_PANTS_03.jpeg",
-      "/product/FORCE_TRACK_PANTS_04.jpeg",
-      "/product/FORCE_TRACK_PANTS_04.jpeg"
+      "/src/assets/product/FORCE_TRACK_PANTS_01.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_02.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_03.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_04.jpeg",
+      "/src/assets/product/FORCE_TRACK_PANTS_04.jpeg"
     ]
   }
 ]

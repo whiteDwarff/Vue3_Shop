@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getProductList } from '@/api/';
+import { getProductList } from '/public/api/index.js';
 export const useProductStore = defineStore('product', {
 	state: () => ({
 		products: [],
@@ -16,16 +16,6 @@ export const useProductStore = defineStore('product', {
 				console.log(err.message);
 			}
 		},
-		// ------------------------------------------------------------------
-		// async fetchedItem(id) {
-		// 	try {
-		// 		const data = await getPostById(id);
-		// 		this.product = data;
-		// 	} catch (err) {
-		// 		console.log(err.message);
-		// 	}
-		// },
-		// ------------------------------------------------------------------
 		// 하나의 상품 조회
 		fetchedItem(id) {
 			this.products.forEach(item => {

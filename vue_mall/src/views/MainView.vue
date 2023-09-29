@@ -1,7 +1,7 @@
 <template>
 	<div id="main-view">
 		<!-- MainView -->
-		<img id="logo" src="/src/assets/logo_.jpg" alt="" />
+		<img id="logo" src="/logo/logo_.jpg" alt="" />
 	</div>
 </template>
 

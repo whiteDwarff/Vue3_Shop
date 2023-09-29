@@ -116,6 +116,7 @@ header {
 	z-index: 0;
 	color: #fff;
 	width: 100%;
+	background: none;
 }
 nav {
 	display: flex;
@@ -155,6 +156,7 @@ aside {
 	left: 0;
 	width: 15%;
 	padding: 10rem 3rem;
+	background: none;
 }
 #title {
 	font-size: 1.5rem;

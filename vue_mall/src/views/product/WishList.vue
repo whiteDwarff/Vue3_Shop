@@ -45,7 +45,6 @@
 import { useWishStore } from '@/store/wish';
 import { storeToRefs } from 'pinia';
 import ProductLabel from '@/components/product/ProductLabell.vue';
-
 const store = useWishStore();
 const { wishList } = storeToRefs(store);
 // ------------------------------------------------------------------
@@ -58,20 +57,26 @@ const deleteItem = index => {
 		: '';
 };
 const addSelectItem = id => {
-	if (!basket.includes(id)) basket.push(id);
-	else {
+	console.log(id);
+	if (!basket.includes(id)) {
+		basket.push(id);
+	} else {
 		const index = basket.indexOf(id);
 		basket.splice(index, 1);
 	}
+	console.dir(wishList.value);
+	console.log('basket : ', basket);
 };
 const deleteSelectItem = () => {
-	if (confirm('선택한 상품을 선택하시겠습니까?')) {
-		const newArray = wishList.value.reverse();
-		for (let i = 0; i < basket.length; i++) {
-			newArray.splice(basket[i], 1);
-		}
-		wishList.value = newArray.reverse();
-	}
+	basket.forEach((item, i) => {
+		wishList.value.forEach((list, j) => {
+			if (item == list.id) {
+				console.log(list);
+				wishList.value.splice(1, j);
+				basket.splice(1, i);
+			}
+		});
+	});
 };
 // 모든 상품 삭제
 const deleteAllItem = () => {
