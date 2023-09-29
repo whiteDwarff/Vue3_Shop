@@ -51,19 +51,26 @@
 **1. index**<br> 
  - 사이트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.<br>
 ![main](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b45636a2-b38c-41f8-87d0-94b9ca9068d2)
-<br>
-<br>
+
+<br><br>
+
 **2. Join**<br>
  - Id와 Password, Email은 validation을 통해 유효성 검증이 통과되면 회원가입을 진행할 수 있습니다.<br>
  - 우편번호는 kakao의 우편번호 서비스를 이용하였습니다. 🔗 (https://postcode.map.daum.net/guide)<br>
  - 기입한 정보는 Pinia와 LocalStorage에 저장됩니다.
 <img width="1451" alt="Join" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/2f993d19-b049-4d80-8e5f-02b02484f35d">
-<br>
-<br>
+
+<br><br>
+
 **3. Login**<br>
   - 로그인 정보는 Pinia에 저장됩니다.<br>
   - REMEMBER ME를 클릭하면 로그인 정보가 LocalStorage에 저장되고 새로고침을 해도 데이터가 유실되지 않습니다.<br>
 <img width="1463" alt="login" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/3fa6e3a5-aefa-4c6e-9650-94d2971b0066">
-<br>
-<br>
+
+<br><br>
+
+**4. Find Info**<br>
+  - LocalStorage에 저장된 정보를 통해 ID와 Password를 확인할 수 있습니다.
+<img width="1394" alt="findInfo" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/cb1138f4-9de5-41ff-b742-7a7404d0afeb">
+
 
