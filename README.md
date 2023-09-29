@@ -45,4 +45,21 @@
 **3. 오류가 발생하거나 빈화면이 노출되는 경우**<br>
 >*URL의 end point로 다시 접속해주세요.*
 
+<br>
+
+## Views
+**1. index**<br>
+  - 사이트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.
+
+![main](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b45636a2-b38c-41f8-87d0-94b9ca9068d2)
+
+
+**2. Join**<br>
+ - Id와 Password, Email은 validation을 통해 유효성 검증이 통과되면 회원가입을 진행할 수 있습니다.<br>
+ - 우편번호는 kakao의 우편번호 서비스를 이용하였습니다. 🔗 (https://postcode.map.daum.net/guide)<br>
+ - 기입한 정보는 Pinia와 LocalStorage에 저장됩니다.
+
+   <img width="1451" alt="Join" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/2f993d19-b049-4d80-8e5f-02b02484f35d">
+
+
 
