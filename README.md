@@ -73,4 +73,12 @@
   - LocalStorage에 저장된 정보를 통해 ID와 Password를 확인할 수 있습니다.
 <img width="1394" alt="findInfo" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/cb1138f4-9de5-41ff-b742-7a7404d0afeb">
 
+<br><br>
+
+**5. ProductList**<br>
+  - 다양한 상품 목록을 확인할 수 있습니다.
+<img width="1470" alt="productInfo" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/137015ac-a57c-41ea-81e1-87fdc3323790">
+
+<br><br>
+
 
