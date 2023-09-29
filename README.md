@@ -82,11 +82,19 @@
 <br><br>
 
 **6. ProductDetail**<br>
-  - 클릭한 상품의 상세화면 입니다.
+  - 클릭한 상품의 상세화면 입니다. 
   - 상품을 WishList에 담거나 구매할 수 있습니다.
   - 상품은 구매할 경우 개수가 차감됩니다.
 <img width="1457" alt="productDetail" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/296d6070-a65c-402e-a25f-7cac06d39d2c">
 
 <br><br>
+
+**7. Payment**<br>
+  - 상품의 구매화면입니다.
+  - 배송메시지를 정하거나 입력할 수 있습니다.
+  - 상품을 구매할 경우 총 주문금액의 2%가 적립금으로 지급됩니다.
+  - 현금영수증 발급정보를 기입할 수 있습니다.
+<img width="1450" alt="payment" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/cf94fadb-97a5-4922-be83-4aad063d00bd">
+
 
 
