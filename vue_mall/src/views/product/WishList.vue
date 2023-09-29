@@ -57,26 +57,38 @@ const deleteItem = index => {
 		: '';
 };
 const addSelectItem = id => {
-	console.log(id);
 	if (!basket.includes(id)) {
 		basket.push(id);
 	} else {
 		const index = basket.indexOf(id);
 		basket.splice(index, 1);
 	}
-	console.dir(wishList.value);
-	console.log('basket : ', basket);
 };
 const deleteSelectItem = () => {
-	basket.forEach((item, i) => {
-		wishList.value.forEach((list, j) => {
-			if (item == list.id) {
-				console.log(list);
-				wishList.value.splice(1, j);
-				basket.splice(1, i);
-			}
+	const newArr = [];
+	if (!basket.length) alert('선택된 상품이 없습니다.');
+	// basket.forEach((item, i) => {
+	// 	wishList.value.reverse().forEach((list, j) => {
+	// 		if (item == list.id) {
+	// 			wishList.value.splice(j, 1);
+	// 			basket.splice(i, 1);
+	// 			console.log(item, list);
+	// 			console.log(basket, wishList.value);
+	// 		}
+	// 	});
+	else {
+		basket.forEach(i => {
+			wishList.value.forEach(j => {
+				if (i == j.id) {
+					newArr.push(i);
+				}
+			});
 		});
-	});
+		newArr.forEach(i => {
+			basket.splice(i, 1);
+			wishList.value.splice(i, 1);
+		});
+	}
 };
 // 모든 상품 삭제
 const deleteAllItem = () => {

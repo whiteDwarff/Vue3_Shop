@@ -120,7 +120,7 @@
 				:disabled="!disabled"
 				class="hover-green submit-button outline-none"
 			>
-				{{ loginUser ? 'UPDATE' : 'JOIN US' }}
+				{{ Object.keys(loginUser).length !== 0 ? 'UPDATE' : 'JOIN US' }}
 			</button>
 		</form>
 	</section>
@@ -225,7 +225,7 @@ const createAccount = () => {
 	// ------------------ store 객체에 값 할당
 	accountInfo.value = nonMemberInfo;
 	// ------------------ localStorage에 회원정보 저장
-	if (loginUser) {
+	if (Object.keys(loginUser.value).length !== 0) {
 		store.updateUserInfo();
 		alert('회원정보가 수정되었습니다.');
 		router.push({ name: 'myshop' });
