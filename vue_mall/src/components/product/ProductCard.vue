@@ -37,8 +37,11 @@ defineProps({
 	overflow: hidden;
 }
 .main-image {
+	/* max-height: 525.53px;
+	min-height: 525.53px; */
 	text-align: center;
 	width: 80%;
+	min-height: 525.53px;
 	transition: 0.5s ease-in-out;
 }
 .main-image:hover {

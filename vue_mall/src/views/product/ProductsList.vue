@@ -41,12 +41,12 @@ const moveDetailPage = id => {
 #grid-box {
 	width: 70%;
 	margin: 16rem auto 0 auto;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-auto-rows: repeat(3, 1fr);
-	gap: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 .grid-item {
+	width: calc(33.33% - 1rem);
 	text-align: center;
 	cursor: pointer;
 }

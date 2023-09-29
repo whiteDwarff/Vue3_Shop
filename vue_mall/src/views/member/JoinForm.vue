@@ -1,13 +1,15 @@
 <template>
 	<section class="wrap">
-		<h4 class="form-title">CREATE ACCOUNT</h4>
+		<h4 class="form-title">{{ $route.params.title }}</h4>
 		<form @submit.prevent="createAccount">
 			<div class="border-bottom">
 				<label for="id-field"
 					><i class="fa-sharp fa-regular fa-asterisk fa-2xs" />ID
 				</label>
+				<!-- Object.keys(loginUser.value).length !== 0 -->
 				<input
 					v-model="nonMemberInfo.id"
+					:disabled="Object.keys(loginUser).length !== 0"
 					v-focus
 					id="id-field"
 					class="outline-none"
@@ -53,6 +55,7 @@
 				</label>
 				<input
 					v-model="nonMemberInfo.name"
+					:disabled="Object.keys(loginUser).length !== 0"
 					id="name-field"
 					class="outline-none"
 					type="text"
@@ -117,7 +120,7 @@
 				:disabled="!disabled"
 				class="hover-green submit-button outline-none"
 			>
-				JOIN US
+				{{ loginUser ? 'UPDATE' : 'JOIN US' }}
 			</button>
 		</form>
 	</section>
@@ -136,21 +139,55 @@ import { useRouter } from 'vue-router';
 import { useUserInfoStore } from '@/store/user';
 import { storeToRefs } from 'pinia';
 
-const nonMemberInfo = ref({
-	id: '',
-	password: '',
-	name: '',
-	tel: {
-		firstTel: '010',
-		middleTel: null,
-		lastTel: null,
-	},
-	post: { postCode: '', adress: '', detailAdress: '', extraAdress: '' },
-	email: '',
-	point: 1000,
-});
-const checkedPassword = ref(null);
+// ------------------ store 정의
+const store = useUserInfoStore();
+// ------------------ store 객체 가져오기
+const { loginUser } = storeToRefs(store);
+const { accountInfo } = storeToRefs(store);
+const nonMemberInfo = ref({});
 
+// -----------------------------------------------------------
+const a = defineProps({
+	title: String,
+});
+console.log(a.title);
+// -----------------------------------------------------------
+if (Object.keys(loginUser.value).length !== 0) {
+	nonMemberInfo.value = {
+		id: accountInfo.value.id,
+		password: '',
+		name: accountInfo.value.name,
+		tel: {
+			firstTel: '010',
+			middleTel: accountInfo.value.tel.middleTel,
+			lastTel: accountInfo.value.tel.lastTel,
+		},
+		post: {
+			postCode: accountInfo.value.post.postCode,
+			adress: accountInfo.value.post.adress,
+			detailAdress: accountInfo.value.post.detailAdress,
+			extraAdress: accountInfo.value.post.extraAdress,
+		},
+		email: accountInfo.value.email,
+		point: 1000,
+	};
+} else {
+	nonMemberInfo.value = {
+		id: '',
+		password: '',
+		name: '',
+		tel: {
+			firstTel: '010',
+			middleTel: null,
+			lastTel: null,
+		},
+		post: { postCode: '', adress: '', detailAdress: '', extraAdress: '' },
+		email: '',
+		point: 1000,
+	};
+}
+
+const checkedPassword = ref(null);
 // -----------------------------------------------------------
 const idInputMsg = computed(() => {
 	return validateId(nonMemberInfo.value.id)
@@ -185,16 +222,18 @@ const disabled = computed(() => {
 // -----------------------------------------------------------
 const router = useRouter();
 const createAccount = () => {
-	// ------------------ store 정의
-	const store = useUserInfoStore();
-	// ------------------ store 객체 가져오기
-	const { accountInfo } = storeToRefs(store);
 	// ------------------ store 객체에 값 할당
 	accountInfo.value = nonMemberInfo;
 	// ------------------ localStorage에 회원정보 저장
-	store.savedUserInfo();
-	alert('회원가입이 완료되었습니다. 로그인 후 이용해주새요.');
-	router.push({ name: 'login' });
+	if (loginUser) {
+		store.updateUserInfo();
+		alert('회원정보가 수정되었습니다.');
+		router.push({ name: 'myshop' });
+	} else {
+		store.savedUserInfo();
+		alert('회원가입이 완료되었습니다. 로그인 후 이용해주새요.');
+		router.push({ name: 'login' });
+	}
 };
 </script>
 

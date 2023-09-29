@@ -2,11 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useUserInfoStore = defineStore('user', {
 	state: () => ({
-		loginUser: {
-			id: '',
-			password: '',
-			session: false,
-		},
+		loginUser: JSON.parse(localStorage.getItem('login')) || {},
 		accountInfo: JSON.parse(localStorage.getItem('user')) || {},
 	}),
 	getters: {
@@ -18,9 +14,19 @@ export const useUserInfoStore = defineStore('user', {
 			const tel = state.accountInfo.tel;
 			return `${tel.firstTel}-${tel.middleTel}-${tel.lastTel}`;
 		},
+		getPassword(state) {
+			return state.accountInfo.password;
+		},
 	},
 	actions: {
+		savedLoginInfo() {
+			localStorage.setItem('login', JSON.stringify(this.loginUser));
+		},
 		savedUserInfo() {
+			localStorage.setItem('user', JSON.stringify(this.accountInfo));
+		},
+		updateUserInfo() {
+			localStorage.removeItem('user');
 			localStorage.setItem('user', JSON.stringify(this.accountInfo));
 		},
 		checkedLoginInfo({ id, password }) {

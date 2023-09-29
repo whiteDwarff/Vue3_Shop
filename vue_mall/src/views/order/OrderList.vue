@@ -1,5 +1,6 @@
 <template>
 	<div class="wrap">
+		<h3 class="sub-title font bold">ORDER LIST</h3>
 		<ul id="table-header" class="flex-box font-label">
 			<li class="order-date">주문일자</li>
 			<li class="info-box">주문정보</li>
@@ -8,7 +9,8 @@
 		<div v-for="(list, i) in orderList" :key="i">
 			<template v-if="list.productInfo.length">
 				<ProductLabel
-					:item="list.productInfo[i]"
+					v-if="list.productInfo.length"
+					:item="list.productInfo[0]"
 					:ohter="list.productInfo.length - 1"
 					class="border-grey"
 				>
@@ -16,7 +18,7 @@
 					<template #header>
 						<div class="order-date">
 							<span class="font order-date">{{ list.orderInfo.date }}</span>
-							<span @click="moveOrderHistory(i)" class="font pointer"
+							<span @click="moveOrderHistory(list.id)" class="font pointer"
 								>[주문 상세 내용]</span
 							>
 						</div>
@@ -43,7 +45,7 @@
 					<template #header>
 						<div class="order-date">
 							<span class="font order-date">{{ list.orderInfo.date }}</span>
-							<span @click="moveOrderHistory(i)" class="font pointer"
+							<span @click="moveOrderHistory(list.id)" class="font pointer"
 								>[주문 상세 내용]</span
 							>
 						</div>
@@ -60,6 +62,11 @@
 			</template>
 		</div>
 	</div>
+	<template v-if="!orderList.length">
+		<div id="none-wish" class="font-label">
+			<span>주문내역이 없습니다.</span>
+		</div>
+	</template>
 </template>
 
 <script setup>
@@ -100,5 +107,12 @@ const moveOrderHistory = id => {
 .order-date span:last-child:hover {
 	text-decoration: underline;
 	text-underline-position: under;
+}
+#none-wish {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
 }
 </style>

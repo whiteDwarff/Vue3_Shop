@@ -7,26 +7,25 @@ const routes = [
 		component: () => import('@/views/MainView.vue'),
 	},
 	{
-		path: '/member',
-		name: 'member',
-		component: () => import('@/views/MemberView.vue'),
-		children: [
-			{
-				path: '',
-				name: 'default',
-				component: () => import('@/components/member/LoginForm.vue'),
-			},
-			{
-				path: 'login',
-				name: 'login',
-				component: () => import('@/components/member/LoginForm.vue'),
-			},
-			{
-				path: 'join',
-				name: 'join',
-				component: () => import('@/components/member/JoinForm.vue'),
-			},
-		],
+		path: '/login',
+		name: 'login',
+		component: () => import('@/views/member/LoginForm.vue'),
+	},
+	{
+		path: '/join/:title',
+		name: 'join',
+		component: () => import('@/views/member/JoinForm.vue'),
+		props: true,
+	},
+	{
+		path: '/findInfo',
+		name: 'findInfo',
+		component: () => import('@/views/member/FindLoginInfo.vue'),
+	},
+	{
+		path: '/findPasswordInfo',
+		name: 'findPasswordInfo',
+		component: () => import('@/views/member/FindPasswordInfo.vue'),
 	},
 	{
 		path: '/products',
@@ -68,6 +67,10 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(''),
 	routes,
+	scrollBehavior() {
+		// 항상 맨 위로 스크롤
+		return { top: 0 };
+	},
 });
 
 export default router;

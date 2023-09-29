@@ -5,8 +5,8 @@ const validateId = id => {
 
 const validatePassword = password => {
 	const reg =
-		/^(?=.*[A-Z])(?=.*[\d!@#$%^&*()_+[\]{};':"|,<>.?/~\\-])(?=.*[a-z])[\w\d!@#$%^&*()_+[\]{};':"|,<>.?/~\\-]{7,14}$/;
-	return reg.test(password);
+		/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/;
+	return reg.test(String(password));
 };
 const validateEmail = email => {
 	let re =

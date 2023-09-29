@@ -1,12 +1,9 @@
 <template>
 	<div class="flex-box product-label">
 		<slot name="header"></slot>
-		<img
-			v-if="item.image"
-			:src="item.image"
-			@click="moveDetailPage(item.id)"
-			class="pointer"
-		/>
+		<!-- <template v-if="item?.image"> -->
+		<img :src="item.image" @click="moveDetailPage(item.id)" class="pointer" />
+		<!-- </template> -->
 		<div class="info-box font">
 			<div class="flex-box align-bottom">
 				<span class="bold">{{ item.name }}</span>
@@ -31,8 +28,8 @@
 import { useRouter } from 'vue-router';
 
 defineProps({
-	item: Object || '',
-	ohter: String || '',
+	item: {},
+	ohter: Number || '',
 });
 const router = useRouter();
 const moveDetailPage = id => {
@@ -42,6 +39,7 @@ const moveDetailPage = id => {
 	});
 };
 </script>
+<script></script>
 
 <style scoped>
 img {

@@ -1,6 +1,6 @@
 <template>
 	<section class="wrap">
-		<h3 class="bold h3">MY SHOPPING</h3>
+		<h3 class="sub-title font bold">MY SHOPPING</h3>
 		<!-- 주문현황 -->
 		<article id="order-state" class="font">
 			<h4 class="bold border-grey">
@@ -36,7 +36,7 @@
 		<article id="my-info" class="font">
 			<!-- 회원정보 -->
 			<div id="info-wrap" class="flex-box space-between">
-				<router-link to="products">
+				<router-link :to="{ name: 'join', params: { title: 'UPDATE INFO' } }">
 					<img
 						src="/sample-image/profile.png"
 						class="image"

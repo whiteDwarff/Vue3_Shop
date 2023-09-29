@@ -9,10 +9,12 @@
 			<ul>
 				<!-- 로그인 상태가 아닌 경우 -->
 				<template v-if="!loginUser.id">
-					<router-link to="/member/login" :class="updateHeaderColor"
+					<router-link to="/login" :class="updateHeaderColor"
 						>LOGIN</router-link
 					>
-					<router-link to="/member/join" :class="updateHeaderColor"
+					<router-link
+						:to="{ name: 'join', params: { title: 'CREATE ACCOUNT' } }"
+						:class="updateHeaderColor"
 						>JOIN</router-link
 					>
 				</template>
@@ -41,10 +43,6 @@
 			<p :class="updateColor" id="title">POWER FORCE SERVICE</p>
 			<ul>
 				<router-link to="/products" :class="updateColor">ALL</router-link>
-				<a :class="updateColor">OUTER</a>
-				<a :class="updateColor">TOP</a>
-				<a :class="updateColor">BOTTOM</a>
-				<a :class="updateColor">ACC</a>
 			</ul>
 		</article>
 		<!-- info -->
@@ -96,11 +94,8 @@ const isDisplayOption = ref({
 
 const logout = () => {
 	if (confirm('로그아웃 하시겠습니까?')) {
-		loginUser.value = {
-			id: '',
-			password: '',
-			session: false,
-		};
+		localStorage.removeItem('login');
+		loginUser.value = {};
 		router.push({ name: 'login' });
 	}
 };

@@ -29,7 +29,7 @@
 			</div>
 			<div class="flex-box around">
 				<article>
-					<input v-model="loginUser.session" type="checkbox" />
+					<input v-model="loginInfo.session" type="checkbox" />
 					<span>REMEBER ME</span>
 				</article>
 				<article>
@@ -43,9 +43,13 @@
 			</div>
 		</form>
 		<p id="find-member-info">
-			<a class="hover-green">Did You Forget Your ID</a>
+			<router-link to="/findInfo" class="hover-green"
+				>Did You Forget Your ID</router-link
+			>
 			<span class="bold">or</span>
-			<a class="hover-green">Password?</a>
+			<router-link to="/findPasswordInfo" class="hover-green"
+				>Password?</router-link
+			>
 		</p>
 	</section>
 </template>
@@ -87,6 +91,8 @@ const router = useRouter();
 const login = () => {
 	if (store.checkedLoginInfo(loginInfo.value)) {
 		loginUser.value = loginInfo;
+		if (loginUser.value.session) store.savedLoginInfo();
+
 		router.push({ name: 'products' });
 	} else if (!store.checkedLoginInfo(loginInfo.value)) {
 		alert('로그인 정보가 일치하지 않습니다.');

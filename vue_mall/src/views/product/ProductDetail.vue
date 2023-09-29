@@ -205,7 +205,7 @@ const addWishList = () => {
 // ------------------------------------------------------------------
 // 제품구매
 const payment = () => {
-	return loginUser.value.id == ''
+	return !loginUser.value.id
 		? router.push({ name: 'login' })
 		: add('payment', '최소 주문수량은 1개 입니다.');
 };
