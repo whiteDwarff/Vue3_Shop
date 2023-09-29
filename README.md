@@ -18,7 +18,7 @@
 <br>
 <br>
 
-## Tech
+## 🛠️ Tech
 **1. vue3.0**<br>
 >*npm init vue@latest*<br>
 
@@ -33,7 +33,7 @@
 
 <br>
 
-## Rules
+## ❗️ Rules
 **1. 새로고침(refresh)를 하지마세요**<br>
 >*해당 프로젝트는 서버가 아닌 Pinia와 LocalStorage로 구성된 프로젝트입니다.*<br>
 >*새로고침을 하게되면 pinia에 저장된 모든 데이터가 삭제됩니다.*<br>
@@ -47,7 +47,7 @@
 
 <br>
 
-## Views
+## 🖥️ Views
 **1. index**<br> 
  - 사이트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.<br>
 ![main](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b45636a2-b38c-41f8-87d0-94b9ca9068d2)
