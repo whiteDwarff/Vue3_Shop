@@ -41,7 +41,7 @@
 **2. 사용자의 PC에 저장된 LocalStorage가 있을 경우 충돌이 발생할 수 있습니다.**<br>
 >*로그인 및 회원가입이 정상적으로 실행되지 않는다면 LocalStorage에 저장된 key값 중 user를 삭제하고 다시 실행하세요.*<br>
 >*해당 프로젝트 검토 후 LocalStorage에 저장된 데이터를 삭제해주세요.*<br>
-<img width="925" alt="storage" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/c0857b1e-5733-4536-87c2-c53e370ffe72">
+<img width="925" alt="storage" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/c0857b1e-5733-4536-87c2-c53e370ffe72"><br>
 
 **3. 오류가 발생하거나 빈화면이 노출되는 경우**<br>
 >*URL의 end point로 다시 접속해주세요.*<br>
@@ -145,4 +145,10 @@
   - LocalStorage에 저장된 정보가 input의 value로 설정됩니다.
   - 회원정보 수정이 완료되면 기존에 LocalStorage에 저장된 정보가 삭제되고 새로 기입한 정보가 저장됩니다.
 <img width="1466" alt="updateInfo" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/71f343a2-96f3-4970-b812-fafa61a0197a">
+
+<br><br>
+
+<div align="center"">
+##감사합니다.
+</div>
     
