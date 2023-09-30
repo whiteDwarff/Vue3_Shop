@@ -150,6 +150,6 @@
 <br><br>
 
 <div align="center"">
-##감사합니다.
+감사합니다.
 </div>
     
