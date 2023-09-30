@@ -84,7 +84,7 @@
 **6. ProductDetail**<br>
   - 클릭한 상품의 상세화면 입니다. 
   - 상품을 WishList에 담거나 구매할 수 있습니다.
-  - 상품은 구매할 경우 개수가 차감됩니다.
+  - 상품을 구매할 경우 개수가 차감됩니다.
 <img width="1457" alt="productDetail" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/296d6070-a65c-402e-a25f-7cac06d39d2c">
 
 <br><br>
@@ -127,3 +127,11 @@
 <img width="1449" alt="my shop" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/a30a0366-e31f-4f19-91a8-af02d9036b66">
 
 <br><br>
+
+**11. UpdateInfo**<br>
+  - 회원가입 시 기입한 정보를 수정할 수 있는 화면입니다.
+  - 회원가입 시 사용된 component가 재사용 됩니다.
+  - LocalStorage에 저장된 정보가 input의 value로 설정됩니다.
+  - 회원정보 수정이 완료되면 기존에 LocalStorage에 저장된 정보가 삭제되고 새로 기입한 정보가 저장됩니다.
+<img width="1466" alt="updateInfo" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/71f343a2-96f3-4970-b812-fafa61a0197a">
+    
