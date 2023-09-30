@@ -36,10 +36,10 @@
 ## ❗️ Rules
 **1. 새로고침(refresh)를 하지마세요**<br>
 >*해당 프로젝트는 서버가 아닌 Pinia와 LocalStorage로 구성된 프로젝트입니다.*<br>
->*새로고침을 하게되면 pinia에 저장된 모든 데이터가 삭제됩니다.*<br>
+>*새로고침을 하게되면 pinia에 저장된 모든 데이터가 유실됩니다.*<br>
 
 **2. 사용자의 PC에 저장된 LocalStorage가 있을 경우 충돌이 발생할 수 있습니다.**<br>
->*로그인 및 회원가입이 정상적으로 실행되지 않는다면 LocalStorage에 저장된 key값 중 user와 login을 삭제하고 다시 실행하세요.*<br>
+>*로그인 및 회원가입이 정상적으로 실행되지 않는다면 LocalStorage에 저장된 key값 중 user를 삭제하고 다시 실행하세요.*<br>
 >*해당 프로젝트 종료 후 LocalStorage에 저장된 데이터를 삭제해주세요.*<br>
 
 **3. 오류가 발생하거나 빈화면이 노출되는 경우**<br>
@@ -55,7 +55,7 @@
 <br><br>
 
 **2. Join**<br>
- - Id와 Password, Email은 validation을 통해 유효성 검증이 통과되면 회원가입을 진행할 수 있습니다.<br>
+ - ID와 Password, Email은 validation을 통해 유효성 검증이 통과되면 회원가입을 진행할 수 있습니다.<br>
  - 우편번호는 kakao의 우편번호 서비스를 이용하였습니다. 🔗 (https://postcode.map.daum.net/guide)<br>
  - 기입한 정보는 Pinia와 LocalStorage에 저장됩니다.
 <img width="1451" alt="Join" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/2f993d19-b049-4d80-8e5f-02b02484f35d">
@@ -105,8 +105,9 @@
   - 하단의 '주문내역' 버튼을 클릭하여 주문 목록을 확인할 수 있습니다.
 <img width="1441" alt="orderHistory" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/c2115eb2-5364-44da-88c0-0a12a15b19c5">
 
+<br><br>
 
-**7. OrderList**<br>
+**8. OrderList**<br>
   - 구매한 상품들의 목록입니다.
   - '[주문 상세 내용']을 클릭하여 상세 조회 화면으로 이동할 수 있습니다.
 <img width="1453" alt="orderList" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b41b9be7-6d42-4475-a4fb-d5c56de1bfd7">
