@@ -40,7 +40,8 @@
 
 **2. 사용자의 PC에 저장된 LocalStorage가 있을 경우 충돌이 발생할 수 있습니다.**<br>
 >*로그인 및 회원가입이 정상적으로 실행되지 않는다면 LocalStorage에 저장된 key값 중 user를 삭제하고 다시 실행하세요.*<br>
->*해당 프로젝트 종료 후 LocalStorage에 저장된 데이터를 삭제해주세요.*<br>
+<img width="925" alt="storage" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/c0857b1e-5733-4536-87c2-c53e370ffe72">
+>*해당 프로젝트 검토 후 LocalStorage에 저장된 데이터를 삭제해주세요.*<br>
 
 **3. 오류가 발생하거나 빈화면이 노출되는 경우**<br>
 >*URL의 end point로 다시 접속해주세요.*<br>
@@ -93,8 +94,7 @@
 
 **6. ProductDetail**<br>
   - 클릭한 상품의 상세화면 입니다. 
-  - 상품을 WishList에 담거나 구매할 수 있습니다.
-  - 상품을 구매할 경우 개수가 차감됩니다.
+  - 상품을 관목록에 담거나 구매할 수 있습니다.
 <img width="1457" alt="productDetail" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/296d6070-a65c-402e-a25f-7cac06d39d2c">
 
 <br><br>
@@ -104,6 +104,7 @@
   - 배송 메시지를 정하거나 입력할 수 있습니다.
   - 상품을 구매할 경우 총 주문 금액의 2%가 적립금으로 지급됩니다.
   - 현금영수증 발급 정보를 기입할 수 있습니다.
+  - 상품을 구매할 경우 개수가 차감됩니다.
 <img width="1450" alt="payment" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/cf94fadb-97a5-4922-be83-4aad063d00bd">
 
 <br><br>
@@ -119,7 +120,7 @@
 
 **8. OrderList**<br>
   - 구매한 상품들의 목록입니다.
-  - '[주문 상세 내용']을 클릭하여 상세 조회 화면으로 이동할 수 있습니다.
+  - '[주문 상세 내용]'을 클릭하여 상세 조회 화면으로 이동할 수 있습니다.
 <img width="1453" alt="orderList" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b41b9be7-6d42-4475-a4fb-d5c56de1bfd7">
 
 <br><br>
