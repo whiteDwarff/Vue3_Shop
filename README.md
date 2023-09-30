@@ -47,6 +47,16 @@
 
 <br>
 
+## 🍍 Pinia Info
+| Name | State1 | state2 |
+| ---  | --- | --- |
+| userStore | loginUser | accountUser |
+| productStore | products | product |
+| orderListStore | orderList | orderInfo |
+| wishStore | wishList | . |
+
+<br>
+
 ## 🖥️ Views
 **1. index**<br> 
  - 사이트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.<br>
