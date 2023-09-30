@@ -145,10 +145,7 @@ const deleteAllItem = () => {
 	margin-right: 10%;
 }
 #none-wish {
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	margin-top: 5rem;
 	text-align: center;
 }
 </style>
