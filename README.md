@@ -112,5 +112,18 @@
   - '[주문 상세 내용']을 클릭하여 상세 조회 화면으로 이동할 수 있습니다.
 <img width="1453" alt="orderList" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b41b9be7-6d42-4475-a4fb-d5c56de1bfd7">
 
+<br><br>
 
+**9. WishList**<br>
+  - 상품의 상세 화면에서 'WISH' 버튼을 클릭하여 관심상품으로 추가한 상품들을 볼 수 있습니다.
+  - 이미지를 클릭하면 상품의 상세 화면으로 이동할 수 있습니다.
+  - 하나의 상품을 삭제하거나, 선택한 상품을 삭제하거나, 전체 상품을 삭제할 수 있습니다.
+![wishList](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/a7530082-ddee-43ff-a1a4-c96d792b05b9)
 
+<br><br>
+
+**10. MyShop**<br>
+  - 개인 정보를 수정하거나 주문 내역 조회을 조회하거나 관심상품을 확인할 수있습니다.
+<img width="1449" alt="my shop" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/a30a0366-e31f-4f19-91a8-af02d9036b66">
+
+<br><br>
