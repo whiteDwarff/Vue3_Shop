@@ -95,7 +95,7 @@
 
 **6. ProductDetail**<br>
   - 클릭한 상품의 상세화면 입니다. 
-  - 상품을 관목록에 담거나 구매할 수 있습니다.
+  - 상품을 관심목록에 담거나 구매할 수 있습니다.
 <img width="1457" alt="productDetail" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/296d6070-a65c-402e-a25f-7cac06d39d2c">
 
 <br><br>
