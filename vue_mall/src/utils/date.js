@@ -9,7 +9,7 @@ const minutes = date.getMinutes(); // 분
 const seconds = date.getSeconds(); // 초
 
 const currentDate = ref(
-	`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`,
+	`${year}-${month + 1}-${day} ${hours}:${minutes}:${seconds}`,
 );
 
 export default currentDate;
