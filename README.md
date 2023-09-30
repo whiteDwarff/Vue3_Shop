@@ -50,7 +50,7 @@
 <br>
 
 ## 🍍 Pinia Info
-| Name | State1 | state2 |
+| Name | State1 | State2 |
 | ---  | --- | --- |
 | userStore | loginUser | accountUser |
 | productStore | products | product |
