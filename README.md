@@ -90,11 +90,26 @@
 <br><br>
 
 **7. Payment**<br>
-  - 선택한 상품의 구매화면입니다.
+  - 선택한 상품의 구매 화면입니다.
   - 배송 메시지를 정하거나 입력할 수 있습니다.
   - 상품을 구매할 경우 총 주문 금액의 2%가 적립금으로 지급됩니다.
   - 현금영수증 발급 정보를 기입할 수 있습니다.
 <img width="1450" alt="payment" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/cf94fadb-97a5-4922-be83-4aad063d00bd">
+
+<br><br>
+
+**7. OrderHistory**<br>
+  - 구매한 상품의 상세 조회 화면입니다.
+  - pinia의 orderList에 저장됩니다.
+  - 저장된 사용자의 정보 및 배송 메시지, 현금 영수증 발급 정보, 구매한 상품의 상세 내역을 확인할 수 있습니다.
+  - 하단의 '주문내역' 버튼을 클릭하여 주문 목록을 확인할 수 있습니다.
+<img width="1441" alt="orderHistory" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/c2115eb2-5364-44da-88c0-0a12a15b19c5">
+
+
+**7. OrderList**<br>
+  - 구매한 상품들의 목록입니다.
+  - '[주문 상세 내용']을 클릭하여 상세 조회 화면으로 이동할 수 있습니다.
+<img width="1453" alt="orderList" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b41b9be7-6d42-4475-a4fb-d5c56de1bfd7">
 
 
 
