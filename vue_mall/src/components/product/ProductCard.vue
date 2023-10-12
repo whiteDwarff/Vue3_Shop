@@ -41,7 +41,7 @@ defineProps({
 	min-height: 525.53px; */
 	text-align: center;
 	width: 80%;
-	min-height: 525.53px;
+	min-height: 411px;
 	transition: 0.5s ease-in-out;
 }
 .main-image:hover {
