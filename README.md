@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&text=Composition%20API를%20사용한%20쇼핑몰%20구현👕&animation=twinkling&fontSize=23&fontAlignY=40&fontAlign=70&height=250&width=1325&align=center)
+![header](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&text=Vue3를%20활용한%20쇼핑몰%20FrontEnd%20구현👕&animation=twinkling&fontSize=23&fontAlignY=40&fontAlign=70&height=250&width=1325&align=center)
 <br>
 <br>
 <div align="center">
