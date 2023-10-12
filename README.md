@@ -56,12 +56,15 @@
 <br>
 
 ## 🍍 Pinia Info
-| Name | State1 | State2 |
-| ---  | --- | --- |
-| userStore | loginUser | accountUser |
-| productStore | products | product |
-| orderListStore | orderList | orderInfo |
-| wishStore | wishList | . |
+| Name | State | description |
+| ---  | --- |  --- |
+| userStore | loginUser |  로그인 정보가 저장된 객체 |
+|  | accountUser | 회원가입 시 작성한 정보가 저장된 객체 |
+| productStore | products |  모든 상품의 정보가 저장된 객체 |
+|  | product | 사용자가 클릭한 하나의 상품 정보가 저장된 객체 |
+| orderListStore | orderList |  주문한 상품들의 정보가 저장된 객체 |
+|  | orderInfo | 사용자가 클릭한 하나의 주문 정보가 저장된 객체 
+| wishStore | wishList | 관심 목록으로 저장한 상품 정보가 저장된 객체 |
 
 <br>
 
