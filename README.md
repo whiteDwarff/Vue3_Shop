@@ -61,14 +61,16 @@
 
 ## 🖥️ Views
 **1. index**<br> 
- - 프로젝트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.<br>
+ - 프로젝트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.
+ - product.json 파일에서 axios를 통해 상품 데이터를 받아와 pinia에 저장시킵니다.
+
 ![main](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b45636a2-b38c-41f8-87d0-94b9ca9068d2)
 
 <br><br>
 
 **2. Join**<br>
- - ID와 Password, Email은 validation을 통해 유효성 검증이 통과되면 회원가입을 진행할 수 있습니다.<br>
- - 우편번호는 kakao의 우편번호 서비스를 이용하였습니다. 🔗 (https://postcode.map.daum.net/guide)<br>
+ - ID와 Password, Email은 validation을 통해 유효성 검증이 통과되면 회원가입을 진행할 수 있습니다.
+ - 우편번호는 kakao의 우편번호 서비스를 이용하였습니다. 🔗 (https://postcode.map.daum.net/guide)
  - 기입한 정보는 Pinia와 LocalStorage에 저장됩니다.
 <img width="1451" alt="Join" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/2f993d19-b049-4d80-8e5f-02b02484f35d">
 
@@ -89,6 +91,7 @@
 
 **5. ProductList**<br>
   - 다양한 상품 목록을 확인할 수 있습니다.
+  - 상품의 재고여부에 따라 out of stock 이 표시됩니다.
 <img width="1470" alt="productInfo" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/137015ac-a57c-41ea-81e1-87fdc3323790">
 
 <br><br>
