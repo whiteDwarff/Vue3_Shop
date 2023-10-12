@@ -35,7 +35,7 @@
 
 ## ❗️ Rules
 **1. 새로고침(refresh)를 하지마세요**<br>
->*해당 프로젝트는 서버가 아닌 Pinia와 LocalStorage로 구성된 프로젝트입니다.*<br>
+>*해당 프로젝트는 서버 없이 Pinia와 LocalStorage로 구성된 프로젝트입니다.*<br>
 >*새로고침을 하게되면 pinia에 저장된 모든 데이터가 유실됩니다.*<br>
 
 **2. 사용자의 PC에 저장된 LocalStorage가 있을 경우 충돌이 발생할 수 있습니다.**<br>
@@ -95,7 +95,7 @@
 
 **6. ProductDetail**<br>
   - 클릭한 상품의 상세화면 입니다. 
-  - 상품을 관목록에 담거나 구매할 수 있습니다.
+  - 상품을 관심목록에 담거나 구매할 수 있습니다.
 <img width="1457" alt="productDetail" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/296d6070-a65c-402e-a25f-7cac06d39d2c">
 
 <br><br>
