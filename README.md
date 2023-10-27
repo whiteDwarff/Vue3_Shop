@@ -37,6 +37,7 @@
 **4. pinia**<br>
 >*npm install pinia*
 
+**5. LocalStorage**<br>
 <br>
 
 ## ❗️ Rules
@@ -71,7 +72,7 @@
 ## 🖥️ Views
 **1. index**<br> 
  - 프로젝트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.
- - product.json 파일에서 axios를 통해 상품 데이터를 받아와 pinia에 저장시킵니다.
+ - product.json 파일에서 axios를 통해 상품 데이터를 받아와 pinia에 저장됩니다.
 
 ![main](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b45636a2-b38c-41f8-87d0-94b9ca9068d2)
 
