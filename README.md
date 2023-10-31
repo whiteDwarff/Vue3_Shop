@@ -20,7 +20,7 @@
 
 ## 🙇🏻‍♂️ 프로젝트 소개
 해당 프로젝트는 Composition API 기초공부를 하고 간단하게 제작한 미니 프로젝트입니다.<br>
-웹 개발을 처음 시작할 때부터 쇼핑몰을 구현해 보고 싶어서 의류 쇼핑몰을 주제로 프로젝트를 구현하였습니다.
+웹 개발을 처음 시작할 때부터 쇼핑몰을 구현해 보고 싶어서 의류 쇼핑몰을 주제로 프로젝트를 제작하였습니다.
 
 <br><br>
 
@@ -41,7 +41,7 @@
 <br>
 
 ## ❗️ Rules
-**1. 새로고침(refresh)를 하지마세요**<br>
+**1. 새로고침을 하지마세요**<br>
 >*해당 프로젝트는 서버 없이 Pinia와 LocalStorage로 구성된 프로젝트입니다.*<br>
 >*새로고침을 하게되면 pinia에 저장된 모든 데이터가 유실됩니다.*<br>
 
@@ -71,7 +71,7 @@
 
 ## 🖥️ Views
 **1. index**<br> 
- - 프로젝트의 메인화면 입니다. 우측 상단의 JOIN 버튼을 눌러 회원가입 화면으로 이동해주세요.
+ - 프로젝트의 메인화면 입니다. 우측 상단의 `JOIN` 버튼을 눌러 회원가입 화면으로 이동해주세요.
  - product.json 파일에서 axios를 통해 상품 데이터를 받아와 pinia에 저장됩니다.
 
 ![main](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b45636a2-b38c-41f8-87d0-94b9ca9068d2)
@@ -88,7 +88,7 @@
 
 **3. Login**<br>
   - 로그인 정보는 Pinia에 저장됩니다.<br>
-  - REMEMBER ME를 클릭하면 로그인 정보가 LocalStorage에 저장되고 새로고침을 해도 데이터가 유실되지 않습니다.<br>
+  - REMEMBER ME를 클릭하면 로그인 정보가 LocalStorage에 저장되고 재접속 시 로그인 상태가 유지됩니다.<br>
 <img width="1463" alt="login" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/3fa6e3a5-aefa-4c6e-9650-94d2971b0066">
 
 <br><br>
@@ -101,7 +101,7 @@
 
 **5. ProductList**<br>
   - 다양한 상품 목록을 확인할 수 있습니다.
-  - 상품의 재고여부에 따라 [out of stock] 이 표시됩니다.
+  - 상품의 재고여부에 따라 `[out of stock]` 이 표시됩니다.
 <img width="1470" alt="productInfo" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/137015ac-a57c-41ea-81e1-87fdc3323790">
 
 <br><br>
@@ -109,7 +109,7 @@
 **6. ProductDetail**<br>
   - 클릭한 상품의 상세화면 입니다. 
   - 상품을 관심목록에 담거나 구매할 수 있습니다.
-  - 상품의 재고가 없다면 [품절]이 표시됩니다.
+  - 상품의 재고가 없다면 `[품절]`이 표시됩니다.
 <img width="1457" alt="productDetail" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/296d6070-a65c-402e-a25f-7cac06d39d2c">
 
 <br><br>
@@ -124,37 +124,37 @@
 
 <br><br>
 
-**7. OrderHistory**<br>
+**8. OrderHistory**<br>
   - 구매한 상품의 상세 조회 화면입니다.
   - pinia의 orderList에 저장됩니다.
   - 저장된 사용자의 정보 및 배송 메시지, 현금 영수증 발급 정보, 구매한 상품의 상세 내역을 확인할 수 있습니다.
-  - 하단의 '주문내역' 버튼을 클릭하여 주문 목록을 확인할 수 있습니다.
+  - 하단의 `주문내역` 버튼을 클릭하여 주문 목록을 확인할 수 있습니다.
 <img width="1441" alt="orderHistory" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/c2115eb2-5364-44da-88c0-0a12a15b19c5">
 
 <br><br>
 
-**8. OrderList**<br>
+**9. OrderList**<br>
   - 구매한 상품들의 목록입니다.
-  - '[주문 상세 내용]'을 클릭하여 상세 조회 화면으로 이동할 수 있습니다.
+  - `[주문 상세 내용]`을 클릭하여 상세 조회 화면으로 이동할 수 있습니다.
 <img width="1453" alt="orderList" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/b41b9be7-6d42-4475-a4fb-d5c56de1bfd7">
 
 <br><br>
 
-**9. WishList**<br>
-  - 상품의 상세 화면에서 'WISH' 버튼을 클릭하여 관심상품으로 추가한 상품들을 볼 수 있습니다.
+**10. WishList**<br>
+  - 상품의 상세 화면에서 `WISH` 버튼을 클릭하여 관심상품으로 추가한 상품들을 볼 수 있습니다.
   - 이미지를 클릭하면 상품의 상세 화면으로 이동할 수 있습니다.
   - 하나의 상품을 삭제하거나, 선택한 상품을 삭제하거나, 전체 상품을 삭제할 수 있습니다.
 ![wishList](https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/a7530082-ddee-43ff-a1a4-c96d792b05b9)
 
 <br><br>
 
-**10. MyShop**<br>
+**11. MyShop**<br>
   - 개인 정보를 수정하거나 주문 내역 조회을 조회하거나 관심상품을 확인할 수있습니다.
 <img width="1449" alt="my shop" src="https://github.com/whiteDwarff/Vue3_Shop/assets/115057117/a30a0366-e31f-4f19-91a8-af02d9036b66">
 
 <br><br>
 
-**11. UpdateInfo**<br>
+**12. UpdateInfo**<br>
   - 회원 정보를 수정할 수 있는 화면입니다.
   - 회원 가입 시 사용된 component가 재사용 됩니다.
   - LocalStorage에 저장된 정보가 input의 value로 설정됩니다.
